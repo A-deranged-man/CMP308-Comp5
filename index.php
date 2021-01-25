@@ -1,6 +1,6 @@
 <?php
 //This adds information from the header.php file
-include("view/header.php");
+include("./view/header.php");
 ?>
 <div class="st-xlarge st-text-grey">
     Home Page
@@ -17,5 +17,5 @@ include("view/header.php");
 </div>
 <?PHP
 //This adds information from the file footer.php
-include("view/footer.php");
+include("./view/footer.php");
 ?>

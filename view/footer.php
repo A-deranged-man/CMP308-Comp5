@@ -11,9 +11,9 @@
 
         <div class="st-col s4">
             <h4>About</h4>
-            <p><a class="st-text-black" href="/~1901368/cmp306/view/about.php">About Me</a></p>
-            <p><a class="st-text-black" href="/~1901368/cmp306/view/diagnose.php">Help</a></p>
-            <p><a class="st-text-black" href="/~1901368/cmp306/view/privacy_policy.php">Privacy Policy</a></p>
+            <p><a class="st-text-black" href="view/about.php">About Me</a></p>
+            <p><a class="st-text-black" href="view/diagnose.php">Help</a></p>
+            <p><a class="st-text-black" href="view/privacy_policy.php">Privacy Policy</a></p>
         </div>
 
         <div class="st-col s4 st-justify">

@@ -12,12 +12,12 @@ Libraries used from Bootstrap 4, W3.CSS, jQuery, Popper.js, Bootstrap JS, Google
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Personal Stylesheet & Icon -->
-        <link href="/~1901368/cmp306/view/favicon.png" rel="icon">
-        <link href="/~1901368/cmp306/view/styles1.css" rel="stylesheet">
+        <link href="view/favicon.png" rel="icon">
+        <link href="view/styles1.css" rel="stylesheet">
 
         <!-- Google Roboto, Google Montserrat & Font Awesome -->
-        <link href="/~1901368/cmp306/view/Google-Roboto.css" rel="stylesheet">
-        <link href="/~1901368/cmp306/view/Google-Montserrat.css" rel="stylesheet">
+        <link href="view/Google-Roboto.css" rel="stylesheet">
+        <link href="cmp306/view/Google-Montserrat.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- Bootstrap CSS -->
@@ -99,7 +99,7 @@ else{
             }
             ?>
             </a>
-        <a href="/~1901368/cmp306/index.php" class="st-bar-item st-button st-block st-white st-left-align">Home Page</a>
+        <a href="index.php" class="st-bar-item st-button st-block st-white st-left-align">Home Page</a>
         <br>
 
         <a onclick="block1()" href="javascript:void(0)" class="st-button st-block st-white st-left-align" id="myBtn">
@@ -107,24 +107,24 @@ else{
             <i class="fa fa-caret-down"></i>
         </a>
         <div id="block1" class="st-bar-block st-hide st-padding-large st-medium">
-            <a href="/~1901368/cmp306/view/items.php" class="st-bar-item st-button">Items & Articles</a>
-            <a href="/~1901368/cmp306/view/displayall.php" class="st-bar-item st-button">Database Entry & JSON</a>
+            <a href="view/items.php" class="st-bar-item st-button">Items & Articles</a>
+            <a href="cmp306/view/displayall.php" class="st-bar-item st-button">Database Entry & JSON</a>
         </div>
         <a onclick="block2()" href="javascript:void(0)" class="st-button st-block st-white st-left-align" id="myBtn">
             Block 2
             <i class="fa fa-caret-down"></i>
         </a>
         <div id="block2" class="st-bar-block st-hide st-padding-large st-medium">
-            <a href="/~1901368/cmp306/view/questions.php" class="st-bar-item st-button">Q&A</a>
+            <a href="view/questions.php" class="st-bar-item st-button">Q&A</a>
             <?php
             if($_SESSION["logged-in"] === "yes") {
-                echo"<a href=\"/~1901368/cmp306/view/useraccount.php\" class=\"st-bar-item st-button\">User Account</a>";
-                echo "<a href=\"/~1901368/cmp306/view/logout.php\" class=\"st-bar-item st-button\">Log Out</a>";
+                echo"<a href=\"view/useraccount.php\" class=\"st-bar-item st-button\">User Account</a>";
+                echo "<a href=\"view/logout.php\" class=\"st-bar-item st-button\">Log Out</a>";
             }
 
             else{
-                echo"<a href=\"/~1901368/cmp306/view/user_registration.php\" class=\"st-bar-item st-button\">Register a New User</a>";
-                echo"<a href=\"/~1901368/cmp306/view/login.php\" class=\"st-bar-item st-button\">Log In</a>";
+                echo"<a href=\"view/user_registration.php\" class=\"st-bar-item st-button\">Register a New User</a>";
+                echo"<a href=\"view/login.php\" class=\"st-bar-item st-button\">Log In</a>";
             }
             ?>
         </div>
@@ -133,7 +133,7 @@ else{
             <i class="fa fa-caret-down"></i>
         </a>
         <div id="block3" class="st-bar-block st-hide st-padding-large st-medium">
-            <a href="/~1901368/cmp306/view/IoT.php" class="st-bar-item st-button">IoT</a>
+            <a href="view/IoT.php" class="st-bar-item st-button">IoT</a>
         </div>
         <a onclick="block4()" href="javascript:void(0)" class="st-button st-block st-white st-left-align" id="myBtn">
             Block 4

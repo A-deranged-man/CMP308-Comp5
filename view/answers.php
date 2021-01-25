@@ -9,7 +9,7 @@ if($_SESSION["logged-in"] === "yes"){
     if (isset($_POST['answer'])) {
         // removes backslashes
         $answer = make_safe($_REQUEST['answer']);
-        // escapes special characters in a string
+        // escapes special characters in a string   
         $ddtm = date("Y-m-d H:i:s");
         $userid = $_SESSION['userid'];
         $result = submitAnswer($qno,$answer,$userid,$ddtm);
