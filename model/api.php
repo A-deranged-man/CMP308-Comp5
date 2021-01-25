@@ -4,7 +4,7 @@
 	$db = new DBController();
 	$conn =  $db->getConnstring();
 
-    function getUserById($id){
+ /*   function getUserById($id){
         global $conn;
         $stmt = mysqli_stmt_init($conn);
         $sql = "SELECT question.qno, question.question, question.userid, question.ddtm, user.username 
@@ -18,7 +18,7 @@
             $rows[] = $r;
         }
         return json_encode($rows);
-    }
+    }*/
 
     function make_safe($uname) {
 	    global $conn;
@@ -36,7 +36,7 @@
     function register_user($username, $email, $password, $date){
         global $conn;
         $stmt = mysqli_stmt_init($conn);
-        $sql = "INSERT into `user` (username, email, password, create_datetime)
+        $sql = "INSERT into `311_user` (username, email, password, create_datetime)
         VALUES (?, ?, ?, ?)" ;
         mysqli_stmt_prepare($stmt, $sql);
         mysqli_stmt_bind_param($stmt, 'ssss', $username,$email, $password, $date);
@@ -47,14 +47,14 @@
     function login_user($email){
         global $conn;
         $stmt = mysqli_stmt_init($conn);
-        $sql = "SELECT * FROM `user` WHERE email=?" ;
+        $sql = "SELECT * FROM `311_user` WHERE email=?" ;
         mysqli_stmt_prepare($stmt, $sql);
         mysqli_stmt_bind_param($stmt, 's', $email);
         mysqli_stmt_execute($stmt);
         return mysqli_stmt_get_result($stmt);
     }
 
-    function  delete_question($qno){
+    /*function  delete_question($qno){
         session_start();
         if($_SESSION["logged-in"] === "yes"){
             global $conn;
@@ -165,6 +165,6 @@
         mysqli_stmt_bind_param($stmt, 'isis', $qno, $answer, $userid,$ddtm);
         mysqli_stmt_execute($stmt);
         return mysqli_stmt_get_result($stmt);
-    }
+    } */
 
    
