@@ -34,32 +34,16 @@
 
 <script>
     // Accordion
-    function block1() {
-        var x = document.getElementById("block1");
+    function user_account() {
+        var x = document.getElementById("user_account");
         if (x.className.indexOf("st-show") == -1) {
             x.className += " st-show";
         } else {
             x.className = x.className.replace(" st-show", "");
         }
     }
-    function block2() {
-        var x = document.getElementById("block2");
-        if (x.className.indexOf("st-show") == -1) {
-            x.className += " st-show";
-        } else {
-            x.className = x.className.replace(" st-show", "");
-        }
-    }
-    function block3() {
-        var x = document.getElementById("block3");
-        if (x.className.indexOf("st-show") == -1) {
-            x.className += " st-show";
-        } else {
-            x.className = x.className.replace(" st-show", "");
-        }
-    }
-    function block4() {
-        var x = document.getElementById("block4");
+    function quiz() {
+        var x = document.getElementById("quiz");
         if (x.className.indexOf("st-show") == -1) {
             x.className += " st-show";
         } else {

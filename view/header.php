@@ -12,12 +12,12 @@ Libraries used from Bootstrap 4, W3.CSS, jQuery, Popper.js, Bootstrap JS, Google
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Personal Stylesheet & Icon -->
-        <link href="view/favicon.png" rel="icon">
-        <link href="view/styles1.css" rel="stylesheet">
+        <link href="favicon.png" rel="icon">
+        <link href="styles1.css" rel="stylesheet">
 
         <!-- Google Roboto, Google Montserrat & Font Awesome -->
-        <link href="view/Google-Roboto.css" rel="stylesheet">
-        <link href="cmp306/view/Google-Montserrat.css" rel="stylesheet">
+        <link href="Google-Roboto.css" rel="stylesheet">
+        <link href="Google-Montserrat.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- Bootstrap CSS -->
@@ -73,7 +73,6 @@ if(!isset($_COOKIE[$cookie_accept])) {
                 </div>
             </div>";
     setcookie($cookie_accept,"accepted",0, "/");
-    setcookie($cookie_guest, "guest".","."0",0,"/" );
 }
 else{
     echo "<!-- Cookies Set -->";
@@ -84,7 +83,7 @@ else{
 
     <div class="st-container st-display-container st-padding-16">
         <i onclick="js_close()" class="fa fa-remove st-hide-large st-button st-display-topright"></i>
-        <h3 class="st-wide"><b>DB Software</b></h3>
+        <h3 class="st-wide"><b>MCQ Application</b></h3>
     </div>
     <div class="st-padding-64 st-large st-text-grey" style="font-weight:bold">
 
@@ -102,55 +101,37 @@ else{
         <a href="index.php" class="st-bar-item st-button st-block st-white st-left-align">Home Page</a>
         <br>
 
-        <a onclick="block1()" href="javascript:void(0)" class="st-button st-block st-white st-left-align" id="myBtn">
-            Block 1
+        <a onclick="user_account()" href="javascript:void(0)" class="st-button st-block st-white st-left-align" id="myBtn">
+            User Settings
             <i class="fa fa-caret-down"></i>
         </a>
-        <div id="block1" class="st-bar-block st-hide st-padding-large st-medium">
-            <a href="view/items.php" class="st-bar-item st-button">Items & Articles</a>
-            <a href="cmp306/view/displayall.php" class="st-bar-item st-button">Database Entry & JSON</a>
-        </div>
-        <a onclick="block2()" href="javascript:void(0)" class="st-button st-block st-white st-left-align" id="myBtn">
-            Block 2
-            <i class="fa fa-caret-down"></i>
-        </a>
-        <div id="block2" class="st-bar-block st-hide st-padding-large st-medium">
-            <a href="view/questions.php" class="st-bar-item st-button">Q&A</a>
+        <div id="user_account" class="st-bar-block st-hide st-padding-large st-medium">
+            <a href="questions.php" class="st-bar-item st-button">Q&A</a>
             <?php
             if($_SESSION["logged-in"] === "yes") {
-                echo"<a href=\"view/useraccount.php\" class=\"st-bar-item st-button\">User Account</a>";
-                echo "<a href=\"view/logout.php\" class=\"st-bar-item st-button\">Log Out</a>";
+                echo"<a href=\"useraccount.php\" class=\"st-bar-item st-button\">User Account</a>";
+                echo "<a href=\"logout.php\" class=\"st-bar-item st-button\">Log Out</a>";
             }
 
             else{
-                echo"<a href=\"view/user_registration.php\" class=\"st-bar-item st-button\">Register a New User</a>";
-                echo"<a href=\"view/login.php\" class=\"st-bar-item st-button\">Log In</a>";
+                echo"<a href=\"user_registration.php\" class=\"st-bar-item st-button\">Register a New User</a>";
+                echo"<a href=\"login.php\" class=\"st-bar-item st-button\">Log In</a>";
             }
             ?>
         </div>
-        <a onclick="block3()" href="javascript:void(0)" class="st-button st-block st-white st-left-align" id="myBtn">
-            Block 3
+        <a onclick="quiz()" href="javascript:void(0)" class="st-button st-block st-white st-left-align" id="myBtn">
+            Quizzes
             <i class="fa fa-caret-down"></i>
         </a>
-        <div id="block3" class="st-bar-block st-hide st-padding-large st-medium">
-            <a href="view/IoT.php" class="st-bar-item st-button">IoT</a>
+        <div id="quiz" class="st-bar-block st-hide st-padding-large st-medium">
+            <a href="#" class="st-bar-item st-button">#</a>
         </div>
-        <a onclick="block4()" href="javascript:void(0)" class="st-button st-block st-white st-left-align" id="myBtn">
-            Block 4
-            <i class="fa fa-caret-down"></i>
-        </a>
-        <div id="block4" class="st-bar-block st-hide st-padding-large st-medium">
-            <a href="../#" class="st-bar-item st-button">TBA</a>
-            <a href="../#" class="st-bar-item st-button">TBA</a>
-        </div>
-        <br>
-        <a href="../#" class="st-button st-block st-white st-left-align">Commentary</a>
     <br>
 </nav>
 
 <!-- Top menu on small screens -->
 <header class="st-bar st-top st-hide-large st-black st-xlarge">
-    <div class="st-bar-item st-padding-24 st-wide">DB Software</div>
+    <div class="st-bar-item st-padding-24 st-wide">MCQ Application</div>
     <a href="javascript:void(0)" class="st-bar-item st-button st-padding-24 st-right" onclick="js_open()"><i class="fa fa-bars"></i></a>
 </header>
 
