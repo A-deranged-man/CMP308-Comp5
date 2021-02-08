@@ -1,10 +1,13 @@
 <?php
+//Connection
 include("header.php");
 session_start();
 include("../model/api.php");
 $qno = $_GET['qno'];
 $userid = $_SESSION['userid'];
 
+//TODO: Should change this to boolean type 
+// $_SESSION[logged-in] === 0 / 1 
 if($_SESSION["logged-in"] === "yes"){
     if (isset($_POST['question'])) {
         $question = make_safe($_REQUEST['question']);

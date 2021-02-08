@@ -13,11 +13,11 @@ Libraries used from Bootstrap 4, W3.CSS, jQuery, Popper.js, Bootstrap JS, Google
 
         <!-- Personal Stylesheet & Icon -->
         <link href="favicon.png" rel="icon">
-        <link href="styles1.css" rel="stylesheet">
+        <link href="../styles/styles1.css" rel="stylesheet">
 
         <!-- Google Roboto, Google Montserrat & Font Awesome -->
-        <link href="Google-Roboto.css" rel="stylesheet">
-        <link href="Google-Montserrat.css" rel="stylesheet">
+        <link href="../fonts/Google-Roboto.css" rel="stylesheet">
+        <link href="../fonts/Google-Montserrat.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- Bootstrap CSS -->

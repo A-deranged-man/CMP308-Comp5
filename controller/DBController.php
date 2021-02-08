@@ -10,7 +10,7 @@ class DBController {
         $con = mysqli_connect($this->host, $this->user, $this->password, $this->database) ;
         // check connection
         if (mysqli_connect_errno()) {
-            echo("Connect failed: ". mysqli_connect_error());
+            echo "Connect failed: ".  mysqli_connect_error();
             exit();
         } else {
             $this->conn = $con;
@@ -18,9 +18,11 @@ class DBController {
         return $this->conn;
     }
 
+
     public function __construct() {
         $this->conn = $this->connectDB();
     }
+
 
     public function connectDB() {
         if ($this->conn->connect_error) {
@@ -29,11 +31,13 @@ class DBController {
         return mysqli_connect($this->host, $this->user, $this->password, $this->database);
     }
 
+
     public function runQuery($query) {
         $result = mysqli_query($this->conn,$query);
         if(!empty($result)) {
             return $result;
         }
     }
+    
 
 }

@@ -2,6 +2,8 @@
 include("header.php");
 include("../model/api.php");
 session_start();
+
+//Delete and replace 
 if($_SESSION["logged-in"] === "yes"){
     echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~1901368/cmp306/view/questions.php';</script>"; exit;
 }
@@ -17,6 +19,7 @@ else{
             $_SESSION["userid"] = $row['userid'];
             $_SESSION["username"] = $row['username'];
             $_SESSION["logged-in"] = "yes";
+            //Delete and replace
             echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~1901368/cmp306/view/questions.php';</script>"; exit;
         }
 
