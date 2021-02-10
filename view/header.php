@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<!--
-Site designed by Dylan Baker
-Libraries used from Bootstrap 4, W3.CSS, jQuery, Popper.js, Bootstrap JS, Google & Font Awesome.
--->
 <html lang="en">
     <head>
         <title>DB Software</title>

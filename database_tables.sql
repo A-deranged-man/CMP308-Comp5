@@ -26,22 +26,23 @@ SET time_zone = "+00:00";
 -- Table structure for table `311_`
 --
 
-CREATE TABLE IF NOT EXISTS `311_questions` (
-  `question` varchar(100) NOT NULL,
-  `qno` int(2) NOT NULL,
-  `ans1` varchar(100) NOT NULL,
-  `ans2` varchar(100) NOT NULL,
-  `ans3` varchar(100) NOT NULL,
-  `ans4` varchar(100) NOT NULL,
-  `correct_ans` varchar(4) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+-- CREATE TABLE IF NOT EXISTS `questions` (
+  
+--   `qno` int(2) NOT NULL,
+--   `ans1` varchar(100) NOT NULL,
+--   `ans2` varchar(100) NOT NULL,
+--   `ans3` varchar(100) NOT NULL,
+--   `ans4` varchar(100) NOT NULL,
+--   `question` varchar(100) NOT NULL,
+--   `correct_ans` varchar(4) NOT NULL
+-- ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `311_`
 --
 
-INSERT INTO `311_questions` (`question`, `qno`, `ans1`, `ans2`, `ans3`, `ans4`, `correct_ans`) VALUES
-('whats green', 1, 'blue', 'red', 'green', 'yellow', 'ans3');
+-- INSERT INTO `311_questions` (`question`, `qno`, `ans1`, `ans2`, `ans3`, `ans4`, `correct_ans`) VALUES
+-- ('whats green', 1, 'blue', 'red', 'green', 'yellow', 'ans3');
 
 -- --------------------------------------------------------
 
@@ -49,10 +50,10 @@ INSERT INTO `311_questions` (`question`, `qno`, `ans1`, `ans2`, `ans3`, `ans4`, 
 -- Table structure for table `311_test_join`
 --
 
-CREATE TABLE IF NOT EXISTS `311_test_join` (
-  `test_id` int(2) NOT NULL,
-  `qno` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+-- CREATE TABLE IF NOT EXISTS `test_questions` (
+--   `test_id` int(2) NOT NULL,
+--   `qno` varchar(200) NOT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `311_test_join`
@@ -68,7 +69,7 @@ INSERT INTO `311_test_join` (`test_id`, `qno`) VALUES
 -- Table structure for table `311_test_meta`
 --
 
-CREATE TABLE IF NOT EXISTS `311_test_meta` (
+CREATE TABLE IF NOT EXISTS `test` (
   `test_id` int(2) NOT NULL,
   `test_name` varchar(50) NOT NULL,
   `test_subject` varchar(50) NOT NULL
@@ -78,8 +79,8 @@ CREATE TABLE IF NOT EXISTS `311_test_meta` (
 -- Dumping data for table `311_test_meta`
 --
 
-INSERT INTO `311_test_meta` (`test_id`, `test_name`, `test_subject`) VALUES
-(1, 'Stuff about colours', 'Colours');
+-- INSERT INTO `311_test_meta` (`test_id`, `test_name`, `test_subject`) VALUES
+-- (1, 'Stuff about colours', 'Colours');
 
 -- --------------------------------------------------------
 
@@ -87,7 +88,7 @@ INSERT INTO `311_test_meta` (`test_id`, `test_name`, `test_subject`) VALUES
 -- Table structure for table `311_user`
 --
 
-CREATE TABLE IF NOT EXISTS `311_user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `userid` int(6) NOT NULL,
   `user_type` int(1) NOT NULL,
   `fname` varchar(25) NOT NULL,
@@ -102,11 +103,11 @@ CREATE TABLE IF NOT EXISTS `311_user` (
 -- Dumping data for table `311_user`
 --
 
-INSERT INTO `311_user` (`userid`, `user_type`, `fname`, `lname`, `email`, `password`, `score`, `create_datetime`) VALUES
-(10, 0, 'Dylan', 'Baker', 'dylanbaker200@hotmail.co.uk', '$2y$10$kMhItdHxrmqidzuweXFLm.PmauO/7lX.FCx7iqkazAaQjPwgm99ka', 0, '2020-11-05 05:37:05'),
-(11, 0, '123', '123', '123@123.123', '$2y$10$PR8abisj/Bklfvpc/410ieLFdHgi2R7BFKynrrS8CiHeMxSJCFVNS', 0, '2020-11-05 14:12:34'),
-(12, 0, 'Greg', 'Gregington', 'Greg@greg.com', '$2y$10$qrAp6XFxZGWs8qGrTRQuA.tbQSCipMT8X8WEzvgpoDO8UTz7zPmme', 0, '2020-11-08 02:24:32'),
-(13, 0, 'Testing', 'Tester', 'testing@testing.com', '$2y$10$wOa8XDgy5tBndjE59rYWr.nQ2GPG1uWwcAaVAHhfEPc.bKMfkijAy', 0, '2020-12-03 01:39:11');
+-- INSERT INTO `311_user` (`userid`, `user_type`, `fname`, `lname`, `email`, `password`, `score`, `create_datetime`) VALUES
+-- (10, 0, 'Dylan', 'Baker', 'dylanbaker200@hotmail.co.uk', '$2y$10$kMhItdHxrmqidzuweXFLm.PmauO/7lX.FCx7iqkazAaQjPwgm99ka', 0, '2020-11-05 05:37:05'),
+-- (11, 0, '123', '123', '123@123.123', '$2y$10$PR8abisj/Bklfvpc/410ieLFdHgi2R7BFKynrrS8CiHeMxSJCFVNS', 0, '2020-11-05 14:12:34'),
+-- (12, 0, 'Greg', 'Gregington', 'Greg@greg.com', '$2y$10$qrAp6XFxZGWs8qGrTRQuA.tbQSCipMT8X8WEzvgpoDO8UTz7zPmme', 0, '2020-11-08 02:24:32'),
+-- (13, 0, 'Testing', 'Tester', 'testing@testing.com', '$2y$10$wOa8XDgy5tBndjE59rYWr.nQ2GPG1uWwcAaVAHhfEPc.bKMfkijAy', 0, '2020-12-03 01:39:11');
 
 --
 -- Indexes for dumped tables

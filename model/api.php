@@ -1,24 +1,14 @@
 <?php
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
 	// Connect to database
 	include("../controller/DBController.php");
 	$db = new DBController();
 	$conn =  $db->getConnstring();
 
- /*   function getUserById($id){
-        global $conn;
-        $stmt = mysqli_stmt_init($conn);
-        $sql = "SELECT question.qno, question.question, question.userid, question.ddtm, user.username 
-        FROM question, user WHERE user.userid = ? AND question.userid = ? ORDER BY `question`.`qno` DESC " ;
-        mysqli_stmt_prepare($stmt, $sql);
-        mysqli_stmt_bind_param($stmt, 'ii', $id, $id);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $rows = array();
-        while($r = mysqli_fetch_assoc($result)) {
-            $rows[] = $r;
-        }
-        return json_encode($rows);
-    }*/
+
 
     function make_safe($uname) {
 	    global $conn;
@@ -33,13 +23,13 @@
             return $uname;
     }
 
-    function register_user($username, $email, $password, $date){
+    function register_user($fname, $lname, $email, $password, $date){
         global $conn;
         $stmt = mysqli_stmt_init($conn);
-        $sql = "INSERT into `311_user` (username, email, password, create_datetime)
-        VALUES (?, ?, ?, ?)" ;
+        $sql = "INSERT INTO `users` (fname, lname, email, password, create_datetime)
+        VALUES (?, ?, ?, ?,?)" ;
         mysqli_stmt_prepare($stmt, $sql);
-        mysqli_stmt_bind_param($stmt, 'ssss', $username,$email, $password, $date);
+        mysqli_stmt_bind_param($stmt, 'sssss', $fname, $lname, $email, $password, $date);
         mysqli_stmt_execute($stmt);
         return mysqli_stmt_get_result($stmt);
     }
@@ -47,13 +37,30 @@
     function login_user($email){
         global $conn;
         $stmt = mysqli_stmt_init($conn);
-        $sql = "SELECT * FROM `311_user` WHERE email=?" ;
+        $sql = "SELECT * FROM `users` WHERE email=?" ;
         mysqli_stmt_prepare($stmt, $sql);
         mysqli_stmt_bind_param($stmt, 's', $email);
         mysqli_stmt_execute($stmt);
         return mysqli_stmt_get_result($stmt);
     }
 
+
+     /*   function getUserById($id){    
+        global $conn;
+        $stmt = mysqli_stmt_init($conn);
+        $sql = "SELECT question.qno, question.question, question.userid, question.ddtm, user.username 
+        FROM question, user WHERE user.userid = ? AND question.userid = ? ORDER BY `question`.`qno` DESC " ;
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_bind_param($stmt, 'ii', $id, $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $rows = array();
+        while($r = mysqli_fetch_assoc($result)) {
+            $rows[] = $r;
+        }
+        return json_encode($rows);
+    }*/
+    
     /*function  delete_question($qno){
         session_start();
         if($_SESSION["logged-in"] === "yes"){
