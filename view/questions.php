@@ -3,7 +3,7 @@ include("header.php");
 include("../model/api.php");
 session_start();
 if($_SESSION["logged-in"] === "yes"){
-    $questiontxt = getTests();
+    $testtxt = getTests();
     $test = json_decode($testtxt);
     for ($i = 0, $iMax = count($test); $i < $iMax; $i++) {
         echo "
