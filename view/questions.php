@@ -70,15 +70,23 @@ for ($i = 0, $iMax = count($question); $i < $iMax; $i++) {
         <div class=\"container\">
             <div class=\"list-group-item list-group-item-action bg-light text-dark \">
                 <div class=\"d-flex w-100 justify-content-between\">
-                    <h5 class=\"mb-1\">Question: {$question[$i]-> question} </h5>
+                    <h5 class=\"mb-1\">Question Number: {$question[$i]-> qno} </h5>
                 </div>
-                <p class=\"st-small\">Date Posted: {$question[$i]-> ddtm}
-                <br>
-                Posted By: {$question[$i]-> username}
+                <p> 
+                    {$question[$i]-> ans1}
                 </p>
-                <button class=\"btn btn-primary st-black st-text-white st-border-black\">
-                    <a class=\"text-light\" href=\"answers.php?qno={$question[$i]-> qno}\">View Answers</a>
-                </button>
+                <p> 
+                {$question[$i]-> ans2}
+                </p>
+                <p> 
+                {$question[$i]-> ans3}
+                </p>
+                <p> 
+                {$question[$i]-> ans4}
+                </p>
+                <p class=\"st-small\">Correct Ans: {$question[$i]-> question}
+                <br>
+                </p>
             </div>
         </div>
         <br>";

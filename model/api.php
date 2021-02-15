@@ -46,6 +46,23 @@
     }
 
 
+    function getQuestions(){
+        global $conn;
+        $stmt = mysqli_stmt_init($conn);
+        $sql = "SELECT questions.qno, questions.question, questions.ans1, questions.ans2 , questions.ans3 , questions.ans4
+        FROM questions" ;
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $rows = array();
+        while($r = mysqli_fetch_assoc($result)) {
+            $rows[] = $r;
+        }
+        return json_encode($rows);
+    }
+
+
+
      /*   function getUserById($id){    
         global $conn;
         $stmt = mysqli_stmt_init($conn);
@@ -173,6 +190,6 @@
         mysqli_stmt_bind_param($stmt, 'isis', $qno, $answer, $userid,$ddtm);
         mysqli_stmt_execute($stmt);
         return mysqli_stmt_get_result($stmt);
-    } */
+    } 
 
    
