@@ -10,20 +10,21 @@
 
 
 
-    function make_safe($uname) {
+    function make_safe($uname) 
+    {
 	    global $conn;
-	    return
-            mysqli_real_escape_string($conn, $uname);
-        }
-
-    function make_safe_SS($uname) {
-        global $conn;
-            mysqli_real_escape_string($conn, $uname);
-            stripslashes($uname);
-            return $uname;
+	    return mysqli_real_escape_string($conn, $uname);   
     }
 
-    function register_user($fname, $lname, $email, $password, $date){
+    function make_safe_SS($uname) 
+    {
+        global $conn;
+        mysqli_real_escape_string($conn, $uname);
+        return stripslashes($uname);   
+    }
+
+    function register_user($fname, $lname, $email, $password, $date)
+    {
         global $conn;
         $stmt = mysqli_stmt_init($conn);
         $sql = "INSERT INTO `users` (fname, lname, email, password, create_datetime)

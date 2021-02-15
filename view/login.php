@@ -5,7 +5,7 @@ session_start();
 
 //Delete and replace 
 if($_SESSION["logged-in"] === "yes"){
-    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~1901368/cmp306/view/questions.php';</script>"; exit;
+    header("Location: questions.php");
 }
 
 else{
@@ -16,11 +16,11 @@ else{
     $result = login_user($email);
     $row = $result->fetch_assoc();
         if (password_verify($password,$row['password'])){
-            $_SESSION["userid"] = $row['userid'];
-            $_SESSION["username"] = $row['username'];
+            $_SESSION["userid"] = $row['user_id'];
+            $_SESSION["email"] = $row['email'];
             $_SESSION["logged-in"] = "yes";
             //Delete and replace
-            echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~1901368/cmp306/view/questions.php';</script>"; exit;
+            header("Location: questions.php");
         }
 
         else{
