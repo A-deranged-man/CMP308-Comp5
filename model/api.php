@@ -63,7 +63,8 @@
 
     function getTests(){
         global $conn;
-        $stmt = "SELECT * FROM  tests";
+        $stmt = mysqli_stmt_init($conn);
+        $sql = "SELECT * FROM tests" ;
         mysqli_stmt_prepare($stmt, $sql);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
@@ -72,7 +73,7 @@
             $rows[] = $r;
         }
         return json_encode($rows);
-    }
+    };
 
 
 
