@@ -75,8 +75,6 @@
         return json_encode($rows);
     };
 
-
-
         function getUserById($id){    
         global $conn;
         $stmt = mysqli_stmt_init($conn);
