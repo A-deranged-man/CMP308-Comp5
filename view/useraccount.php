@@ -30,7 +30,7 @@ if($_SESSION["logged-in"] === "yes") {
 }
 
 else{
-    header("Location: questions.php"); exit;
+    header("Location: login.php"); exit;
 }
 
 include("footer.php");
