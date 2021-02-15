@@ -7,7 +7,7 @@
     include("../model/api.php");
     if($_SESSION["logged-in"] === "yes")
     {
-        header("Location: questions.php");
+        header("Location: quizzes.php");
     }
     ?>
 
