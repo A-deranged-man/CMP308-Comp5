@@ -3,40 +3,41 @@ include("header.php");
 include("../model/api.php");
 session_start();
 if($_SESSION["logged-in"] === "yes"){
-    if (isset($_POST['question'])) {
-    $question = make_safe($_REQUEST['question']);
-    // escapes special characters in a string
-    $ddtm = date("Y-m-d H:i:s");
-    $userid = $_SESSION['userid'];
-    $result = submitQuestion($question,$userid,$ddtm);
-    }
-    if($result){
-        echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~1901368/cmp306/view/questions.php';</script>"; exit;
-    }
-    else{
-        echo ' 
-         <div class="st-xlarge st-text-grey">
-            Questions
-           </div>
-        <br>
+    header("Location: login.php");
+    // if (isset($_POST['question'])) {
+    // $question = make_safe($_REQUEST['question']);
+    // // escapes special characters in a string
+    // $ddtm = date("Y-m-d H:i:s");
+    // $userid = $_SESSION['userid'];
+    // $result = submitQuestion($question,$userid,$ddtm);
+    // }
+    // if($result){
+    //     echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~1901368/cmp306/view/questions.php';</script>"; exit;
+    // }
+    // else{
+    //     echo ' 
+    //      <div class="st-xlarge st-text-grey">
+    //         Questions
+    //        </div>
+    //     <br>
             
-            <div class="container">
+    //         <div class="container">
 
-            <div class="list-group-item list-group-item-action bg-light text-dark ">
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">Ask a Question:</h5>
-                </div>
-                <form class="form" action="" method="post">
-                <p>
-                    <br>
-                    <input type="text" name="question" length="500" placeholder="Type your question here" required >
-                </p>
-                    <input class="btn btn-primary st-black st-text-white st-border-black" type="submit" name="submit" value="Ask Question!">
-                </form>
-            </div>
-        </div>
-        <br>';
-    }
+    //         <div class="list-group-item list-group-item-action bg-light text-dark ">
+    //             <div class="d-flex w-100 justify-content-between">
+    //                 <h5 class="mb-1">Ask a Question:</h5>
+    //             </div>
+    //             <form class="form" action="" method="post">
+    //             <p>
+    //                 <br>
+    //                 <input type="text" name="question" length="500" placeholder="Type your question here" required >
+    //             </p>
+    //                 <input class="btn btn-primary st-black st-text-white st-border-black" type="submit" name="submit" value="Ask Question!">
+    //             </form>
+    //         </div>
+    //     </div>
+    //     <br>';
+    // }
 }
 else{
     echo ' 
@@ -63,30 +64,17 @@ else{
         </div>
         <br>';
 }
-$questiontxt = getQuestions();
-$question = json_decode($questiontxt);
-for ($i = 0, $iMax = count($question); $i < $iMax; $i++) {
+$questiontxt = getTests();
+$test = json_decode($testtxt);
+for ($i = 0, $iMax = count($test); $i < $iMax; $i++) {
     echo "
         <div class=\"container\">
             <div class=\"list-group-item list-group-item-action bg-light text-dark \">
                 <div class=\"d-flex w-100 justify-content-between\">
-                    <h5 class=\"mb-1\">Question Number: {$question[$i]-> qno} </h5>
+                    <h5 class=\"mb-1\"><strong>{$test[$i]-> test_name} </strong></h5>
+                    <h7>{$test[$i]-> test_subject} </h7>
                 </div>
-                <p> 
-                    {$question[$i]-> ans1}
-                </p>
-                <p> 
-                {$question[$i]-> ans2}
-                </p>
-                <p> 
-                {$question[$i]-> ans3}
-                </p>
-                <p> 
-                {$question[$i]-> ans4}
-                </p>
-                <p class=\"st-small\">Correct Ans: {$question[$i]-> question}
-                <br>
-                </p>
+
             </div>
         </div>
         <br>";

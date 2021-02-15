@@ -61,6 +61,19 @@
         return json_encode($rows);
     }
 
+    function getTests(){
+        global $conn;
+        $stmt = "SELECT * FROM  tests";
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $rows = array();
+        while($r = mysqli_fetch_assoc($result)) {
+            $rows[] = $r;
+        }
+        return json_encode($rows);
+    }
+
 
 
      /*   function getUserById($id){    
