@@ -3,7 +3,6 @@ include("header.php");
 include("../model/api.php");
 session_start();
 if($_SESSION["logged-in"] === "yes"){
-    header("Location: login.php");
     // if (isset($_POST['question'])) {
     // $question = make_safe($_REQUEST['question']);
     // // escapes special characters in a string

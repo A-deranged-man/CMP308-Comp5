@@ -10,19 +10,13 @@ if($_SESSION["logged-in"] === "yes") {
     for ($i = 0, $iMax = count($user); $i < $iMax; $i++) {
         echo "<div class=\"container\">
             <div class=\"list-group-item list-group-item-action bg-light text-dark \">
-                <div class=\"d-flex w-100 justify-content-between\">
-                    <h5 class=\"mb-1\">Question: {$user[$i]-> question} </h5>
-                </div>
-                <p class=\"st-small\">Date Posted: {$user[$i]-> ddtm}
-                    <br>
-                    Posted By: {$user[$i]-> username}
+                <p class=\"st-small\">
+                    Posted By: {$user[$i]-> email}
                 </p>
-                <button class=\"btn btn-primary st-red st-text-white st-border-black\">
-                    <a class=\"text-light\" href=\"delete_question.php?qno={$user[$i]-> qno}\">Delete Question</a>
-                </button>
-                <button class=\"btn btn-primary st-black st-text-white st-border-black\">
-                    <a class=\"text-light\" href=\"edit_question.php?qno={$user[$i]-> qno}\">Edit Question</a>
-                </button>
+                <p>
+                    Posted By: {$user[$i]-> lname}
+                </p>
+  
             </div>
         </div>
         <br>";

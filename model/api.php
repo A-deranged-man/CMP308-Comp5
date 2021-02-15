@@ -77,13 +77,12 @@
 
 
 
-     /*   function getUserById($id){    
+        function getUserById($id){    
         global $conn;
         $stmt = mysqli_stmt_init($conn);
-        $sql = "SELECT question.qno, question.question, question.userid, question.ddtm, user.username 
-        FROM question, user WHERE user.userid = ? AND question.userid = ? ORDER BY `question`.`qno` DESC " ;
+        $sql = "SELECT * FROM users WHERE users.user_id = ?" ;
         mysqli_stmt_prepare($stmt, $sql);
-        mysqli_stmt_bind_param($stmt, 'ii', $id, $id);
+        mysqli_stmt_bind_param($stmt, 'i', $id);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         $rows = array();
@@ -91,7 +90,7 @@
             $rows[] = $r;
         }
         return json_encode($rows);
-    }*/
+    };
     
     /*function  delete_question($qno){
         session_start();
