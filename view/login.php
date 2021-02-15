@@ -5,7 +5,7 @@ session_start();
 
 //Delete and replace 
 if($_SESSION["logged-in"] === "yes"){
-    header("Location: questions.php");
+    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/questions.php';</script>"; exit;
 }
 
 else{
@@ -20,7 +20,7 @@ else{
             $_SESSION["email"] = $row['email'];
             $_SESSION["logged-in"] = "yes";
             //Delete and replace
-            header("Location: questions.php");
+            echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/questions.php';</script>"; exit;
         }
 
         else{
