@@ -30,7 +30,7 @@ if($_SESSION["logged-in"] === "yes") {
 }
 
 else{
-    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~1901368/cmp306/view/login.php';</script>"; exit;
+    header("Location: questions.php"); exit;
 }
 
 include("footer.php");

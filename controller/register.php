@@ -14,7 +14,7 @@ if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
 {
     echo "<div class='form'>
               <h3>Email Address Invalid.</h3><br/>
-              <p class='link'><a href='user_registration.php'>Click here to register again.</a></p>
+              <p class='link'><a href='../view/user_registration.php'>Click here to register again.</a></p>
               </div>";
 }
 else if (preg_match('/[A-Za-z0-9]+/', $_POST['fname']) == 0) 
@@ -35,7 +35,7 @@ else if (strlen($_POST['password']) > 60 || strlen($_POST['password']) < 5)
 {
     echo "<div class='form'>
               <h3>Password Over character limit (60 characters max)</h3><br/>
-              <p class='link'><a href='user_registration.php'>Click here to register again.</a></p>
+              <p class='link'><a href='../view/user_registration.php'>Click here to register again.</a></p>
               </div>";
 }
 else
