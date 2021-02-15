@@ -18,6 +18,8 @@ else{
         if (password_verify($password,$row['password'])){
             $_SESSION["userid"] = $row['user_id'];
             $_SESSION["email"] = $row['email'];
+            $_SESSION["fname"] = $row['fname'];
+            $_SESSION["lname"] = $row['lname'];
             $_SESSION["logged-in"] = "yes";
             //Delete and replace
             echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quizzes.php';</script>"; exit;

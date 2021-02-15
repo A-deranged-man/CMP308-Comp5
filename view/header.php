@@ -86,7 +86,7 @@ else{
         <a class="st-bar-item st-white st-left-align" id="myBtn" >
             <?php
             if(isset($_SESSION['username'])) {
-                echo "Welcome ".$_SESSION['username']."!";
+                echo "Welcome ".$_SESSION['fname']."!";
             }
 
             else{
