@@ -102,7 +102,6 @@ else{
             <i class="fa fa-caret-down"></i>
         </a>
         <div id="user_account" class="st-bar-block st-hide st-padding-large st-medium">
-            <a href="questions.php" class="st-bar-item st-button">Q&A</a>
             <?php
             if($_SESSION["logged-in"] === "yes") {
                 echo"<a href=\"useraccount.php\" class=\"st-bar-item st-button\">User Account</a>";
@@ -120,7 +119,7 @@ else{
             <i class="fa fa-caret-down"></i>
         </a>
         <div id="quiz" class="st-bar-block st-hide st-padding-large st-medium">
-            <a href="#" class="st-bar-item st-button">#</a>
+            <a href="quizzes.php" class="st-bar-item st-button">Show all quizzes</a>
         </div>
     <br>
 </nav>
