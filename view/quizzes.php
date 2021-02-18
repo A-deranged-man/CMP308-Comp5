@@ -4,6 +4,8 @@ include("../model/api.php");
 session_start();
 if($_SESSION["logged-in"] === "yes"){
     $testtxt = getTests();
+    $hashkey = 178450932;
+    $q = $hashkey;
     $test = json_decode($testtxt);
     for ($i = 0, $iMax = count($test); $i < $iMax; $i++) {
         echo "
@@ -12,7 +14,7 @@ if($_SESSION["logged-in"] === "yes"){
                 <div class=\"d-flex w-100 justify-content-between\">
                     <h5 class=\"mb-1\"><strong>{$test[$i]-> test_name} </strong></h5>
                     <h7>{$test[$i]-> test_subject} </h7>
-                    <a class='btn btn-primary' href='quizz.php?id={$test[$i]-> test_id}'>Start Test</a>
+                    <a class='btn btn-primary' href='quizz.php?id={$test[$i]-> test_id}&q={$q}'>Start Test</a>
                 </div>
                 
 

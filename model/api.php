@@ -93,7 +93,7 @@
     function getQuestionsByTestId($id){
         global $conn;
         $stmt = mysqli_stmt_init($conn);
-        $sql = "SELECT tests.test_name , tests.test_subject , questions.question , questions.ans1 , questions.ans2, questions.ans3,questions.ans4,questions.correct_ans
+        $sql = "SELECT tests.test_name , tests.test_subject, questions.qno , questions.question , questions.ans1 , questions.ans2, questions.ans3,questions.ans4,questions.correct_ans
          FROM `test_questions` 
          INNER JOIN tests 
          ON test_questions.test_id = tests.test_id 
@@ -111,7 +111,46 @@
         return json_encode($rows);
 
     }
-    
+
+    //SELECT tests.test_name , user_scores.score , user_scores.num_of_questions FROM `user_scores` INNER JOIN users ON user_scores.user_id = users.user_id INNER JOIN tests on user_scores.test_id = tests.test_id WHERE user_scores.user_id = 2
+
+     function getResultsForUser($userid){
+        global $conn;
+        $stmt = mysqli_stmt_init($conn);
+        $sql = "SELECT tests.test_name , user_scores.score , user_scores.num_of_questions 
+        FROM `user_scores` 
+        INNER JOIN users 
+        ON user_scores.user_id = users.user_id 
+        INNER JOIN tests 
+        on user_scores.test_id = tests.test_id 
+        WHERE user_scores.user_id = ?";
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $userid);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $rows = array();
+        while($r = mysqli_fetch_assoc($result)) {
+             $rows[] = $r;
+        }
+        return json_encode($rows);
+     }
+
+
+     function getRightAnswerByID($qid){
+        global $conn;
+        $stmt = mysqli_stmt_init($conn);
+        $sql = "SELECT * FROM `questions` WHERE questions.qno = ?";
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_bind_param($stmt, 'i', $qid);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $rows = array();
+        while($r = mysqli_fetch_assoc($result)) {
+             $rows[] = $r;
+        }
+        return json_encode($rows);
+     }
+
     /*function  delete_question($qno){
         session_start();
         if($_SESSION["logged-in"] === "yes"){
