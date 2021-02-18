@@ -6,9 +6,9 @@ session_start();
 $qno = $_GET["q"];
 $id = $_GET["id"];
 
-
-
-
+if(!isset($_SESSION["score"])){
+    $_SESSION["score"] = 0;
+}
 
 if($_SESSION["logged-in"] === "yes"){
 
@@ -17,18 +17,13 @@ if($_SESSION["logged-in"] === "yes"){
 
     //Descrypt number of question and show it 
     $hashkey = 178450932;
- 
-    echo $qno;
-
-    
     $i = ($qno/ $hashkey) - 1;
-
 
     echo "<h2> Test Name: {$questions[0]-> test_name}</h2>";
     echo "<h7> Subject: {$questions[0]-> test_subject}</h7>";
     echo "<br>";
 
-
+    echo "SCORE (DEBUG): {$_SESSION["score"]}";
 
     echo " <form name='qForm' method='post' action='../controller/questionsController.php?id={$id}&q={$qno}'>
     
@@ -36,19 +31,19 @@ if($_SESSION["logged-in"] === "yes"){
                     <h4>{$questions[$i] -> question}</h4>
 
                      <div class='form-check form-check-inline'>
-                         <input class='form-check-input' type='radio' name='ans' id='exampleRadios{$i}' value='a' checked>
+                         <input class='form-check-input' type='radio' name='ans' id='exampleRadios{$i}' value='ans1' checked>
                         <label class='form-check-label' for='exampleRadios1'> {$questions[$i] -> ans1} </label>
                      </div>
                     <div class='form-check form-check-inline'>
-                         <input class='form-check-input' type='radio' name='ans' id='exampleRadios{$i}' value='b'>
+                         <input class='form-check-input' type='radio' name='ans' id='exampleRadios{$i}' value='ans2'>
                          <label class='form-check-label' for='exampleRadios1'> {$questions[$i] -> ans2} </label>
                      </div>
                      <div class='form-check form-check-inline'>
-                         <input class='form-check-input' type='radio' name='ans' id='exampleRadios{$i}' value='c'>
+                         <input class='form-check-input' type='radio' name='ans' id='exampleRadios{$i}' value='ans3'>
                          <label class='form-check-label' for='exampleRadios1'> {$questions[$i] -> ans3} </label>
                      </div>
                      <div class='form-check form-check-inline'>
-                         <input class='form-check-input' type='radio' name='ans' id='exampleRadios{$i}' value='d'>
+                         <input class='form-check-input' type='radio' name='ans' id='exampleRadios{$i}' value='ans4'>
                          <label class='form-check-label' for='exampleRadios1'> {$questions[$i] -> ans4} </label>
                      </div>
                 </div>
@@ -58,33 +53,6 @@ if($_SESSION["logged-in"] === "yes"){
     
     </form>";
     
-        // echo "
-  
-        //             <div class='container'>
-        //                 <h4>{$questions[$i] -> question}</h4>
-
-        //                 <div class='form-check form-check-inline'>
-        //                     <input class='form-check-input' type='radio' name='exampleRadios{$i}' id='exampleRadios{$i}' value='a' checked>
-        //                     <label class='form-check-label' for='exampleRadios1'> {$questions[$i] -> ans1} </label>
-        //                 </div>
-        //                 <div class='form-check form-check-inline'>
-        //                     <input class='form-check-input' type='radio' name='exampleRadios{$i}' id='exampleRadios{$i}' value='b'>
-        //                     <label class='form-check-label' for='exampleRadios1'> {$questions[$i] -> ans2} </label>
-        //                 </div>
-        //                 <div class='form-check form-check-inline'>
-        //                     <input class='form-check-input' type='radio' name='exampleRadios{$i}' id='exampleRadios{$i}' value='c'>
-        //                     <label class='form-check-label' for='exampleRadios1'> {$questions[$i] -> ans3} </label>
-        //                 </div>
-        //                 <div class='form-check form-check-inline'>
-        //                     <input class='form-check-input' type='radio' name='exampleRadios{$i}' id='exampleRadios{$i}' value='d'>
-        //                     <label class='form-check-label' for='exampleRadios1'> {$questions[$i] -> ans4} </label>
-        //                 </div>
-        //             </div>
-        //     <br>
-        //     <br>
-        // ";
-    
-        // echo "<a class='btn btn-primary' href='../controller/questionsController.php?id={$id}&q={$qno}'>Start Test</a>"
 
 ?>
 
