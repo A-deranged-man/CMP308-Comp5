@@ -1,7 +1,6 @@
 <?php
 include("header.php");
 include("../model/api.php");
-session_start();
 
 $qno = $_GET["q"];
 $id = $_GET["id"];
@@ -14,20 +13,32 @@ if($_SESSION["logged-in"] === "yes"){
 
     $questionstxt = getQuestionsByTestId($id);
     $questions = json_decode($questionstxt);
-
+    $numberOfQuestions = count($questions);
+   
+    echo $questionNumber;
     //Descrypt number of question and show it 
     $hashkey = 178450932;
     $i = ($qno/ $hashkey) - 1;
 
+    $currentQuestion = $i + 1;
+
     echo "<h2> Test Name: {$questions[0]-> test_name}</h2>";
     echo "<h7> Subject: {$questions[0]-> test_subject}</h7>";
+    echo  "<label> Question {$currentQuestion} of {$numberOfQuestions}</label>";
     echo "<br>";
 
     echo "SCORE (DEBUG): {$_SESSION["score"]}";
 
-    echo " <form name='qForm' method='post' action='../controller/questionsController.php?id={$id}&q={$qno}'>
+
+        if($currentQuestion == $numberOfQuestions){
+            echo " <form name='qForm' method='post' action='../controller/finishTestController.php?id={$id}&qnum={$numberOfQuestions}'>";
+        }else{
+            echo " <form name='qForm' method='post' action='../controller/questionsController.php?id={$id}&q={$qno}'>";
+        }
+
+    echo " <form name='qForm' method='post' action='../controller/questionsController.php?id={$id}&q={$qno}'>";
     
-                <div class='container'>
+          echo      "<div class='container'>
                     <h4>{$questions[$i] -> question}</h4>
 
                      <div class='form-check form-check-inline'>
@@ -48,10 +59,17 @@ if($_SESSION["logged-in"] === "yes"){
                      </div>
                 </div>
                 <br>
-                <br>
-                <input class='btn btn-primary' type='Submit' name='Submit1' value'Next Question'></input>
+                <br>";
+
+                if($currentQuestion == $numberOfQuestions){
+                    echo "<input class='btn btn-primary' type='Submit' name='Submit1' value='Finish Test'></input>";
+                }else{
+                    echo "<input class='btn btn-primary' type='Submit' name='Submit1' value='Next Question'></input>";
+                }
+
+                
     
-    </form>";
+  echo      "</form>";
     
 
 ?>

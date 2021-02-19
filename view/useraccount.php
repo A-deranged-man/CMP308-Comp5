@@ -1,7 +1,6 @@
 <?php
 include("header.php");
 include("../model/api.php");
-session_start();
 $userid = $_SESSION['userid'];
 if($_SESSION["logged-in"] === "yes") {
 

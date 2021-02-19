@@ -151,6 +151,33 @@
         return json_encode($rows);
      }
 
+     function updateScore($userId , $testId , $score , $numQuestions){
+         //INSERT INTO `sqlcmp311g20c05`.`user_scores` (`us_id`, `user_id`, `test_id`, `num_of_questions`, `score`) VALUES (NULL, '', '', '', '')
+         global $conn;
+         $stmt = mysqli_stmt_init($conn);
+         $sql = "INSERT INTO `user_scores` (`user_id`, `test_id`, `num_of_questions`, `score`) VALUES (?, ?, ?, ?)";
+         mysqli_stmt_prepare($stmt, $sql);
+         mysqli_stmt_bind_param($stmt, 'iiii', $userId, $testId, $numQuestions, $score);
+         mysqli_stmt_execute($stmt);
+         return mysqli_stmt_get_result($stmt);
+     }
+
+     function isTestTaken($userId , $testId){
+        global $conn;
+        $stmt = mysqli_stmt_init($conn);
+        $sql = "SELECT * FROM `user_scores` WHERE user_id = ? AND test_id = ?";
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_bind_param($stmt, 'ii', $userId , $testId);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+
+        if(mysqli_num_rows($result)==1){
+            return 1;
+        }else {
+            return 0;
+        }
+     }
+
     /*function  delete_question($qno){
         session_start();
         if($_SESSION["logged-in"] === "yes"){

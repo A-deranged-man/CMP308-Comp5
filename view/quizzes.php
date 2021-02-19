@@ -1,7 +1,6 @@
 <?php
 include("header.php");
 include("../model/api.php");
-session_start();
 if($_SESSION["logged-in"] === "yes"){
     $testtxt = getTests();
     $hashkey = 178450932;
@@ -13,11 +12,15 @@ if($_SESSION["logged-in"] === "yes"){
             <div class=\"list-group-item list-group-item-action bg-light text-dark \">
                 <div class=\"d-flex w-100 justify-content-between\">
                     <h5 class=\"mb-1\"><strong>{$test[$i]-> test_name} </strong></h5>
-                    <h7>{$test[$i]-> test_subject} </h7>
-                    <a class='btn btn-primary' href='quizz.php?id={$test[$i]-> test_id}&q={$q}'>Start Test</a>
-                </div>
-                
+                    <h7>{$test[$i]-> test_subject} </h7>";
 
+                    if(isTestTaken($_SESSION["userid"],$test[$i]-> test_id)){
+                        echo "<label>Complete</label>";
+                    }else{
+                        echo "<a class='btn btn-primary' href='quizz.php?id={$test[$i]-> test_id}&q={$q}'>Start Test</a>";
+                    }
+                    
+            echo"</div>
             </div>
         </div>
         <br>";

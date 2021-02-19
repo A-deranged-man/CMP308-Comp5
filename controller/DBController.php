@@ -25,8 +25,8 @@ class DBController {
 
 
     public function connectDB() {
-        if ($this->conn->connect_error) {
-            die("Connection failed: " . $this->conn->connect_error);
+        if (mysqli_connect_errno()) {
+            die("Connection failed: " . mysqli_connect_error());
         }
         return mysqli_connect($this->host, $this->user, $this->password, $this->database);
     }
