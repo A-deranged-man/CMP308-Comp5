@@ -10,20 +10,20 @@
         <div class="st-col s4">
             <h4>About</h4>
             <p><a class="st-text-black" href="view/about.php">About COVID COCKROACHES</a></p>
-            <p><a class="st-text-black" href="view/privacy_policy.php">Privacy Policy</a></p>
+            <p><a class="st-text-black" href="privacy_policy.php">Privacy Policy</a></p>
         </div>
 
         <div class="st-col s4 st-justify">
-            <h4>Contact Me</h4>
+            <h4>Contact Us</h4>
             <p><i class="fa fa-fw fa-map-marker"></i> Abertay University</p>
                 
-            <p><i class="fa fa-fw fa-user"></i> Dylan Baker</p>
-            <p><i class="fa fa-fw fa-envelope"></i> 1901368@uad.ac.uk</p>
+            <p><i class="fa fa-fw fa-user"></i> COVID Cockroaches</p>
+            <!-- <p><i class="fa fa-fw fa-envelope"></i> 1901368@uad.ac.uk</p> -->
         </div>
     </div>
 </footer>
 
-<div class="st-black st-center st-padding-16"><p>Site design by Dylan Baker.</p> </div>
+<div class="st-black st-center st-padding-16"><p>Site design by COVID Cockroaches.</p> </div>
 
 <!-- End page content -->
 </div>
