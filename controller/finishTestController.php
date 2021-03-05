@@ -1,13 +1,13 @@
 <?php 
 session_start();
 include("../model/api.php");
-$testId = $_GET["id"];
-$testNum= $_GET["qnum"];
-$score = $_SESSION["score"];
 $userId = $_SESSION["userid"];
+$testId = $_GET["id"];
+$qcount = $_SESSION["qcount"];
+$testNum= $_GET["qnum"];
+$rating = $_SESSION["score"];
 
-
-$res = updateScore($userId , $testId , $score , $testNum);
+$res = updateScore($userId , $testId , $testNum, $qcount, $rating);
 
 
 

@@ -151,14 +151,25 @@
         return json_encode($rows);
      }
 
-     function updateScore($userId , $testId , $score , $numQuestions){
+     function updateScore($userId , $testId , $testNum, $qcount, $rating){
          //INSERT INTO `sqlcmp311g20c05`.`user_scores` (`us_id`, `user_id`, `test_id`, `num_of_questions`, `score`) VALUES (NULL, '', '', '', '')
          global $conn;
          $stmt = mysqli_stmt_init($conn);
          $sql = "INSERT INTO `user_scores` (`user_id`, `test_id`, `num_of_questions`, `score`) VALUES (?, ?, ?, ?)";
          mysqli_stmt_prepare($stmt, $sql);
-         mysqli_stmt_bind_param($stmt, 'iiii', $userId, $testId, $numQuestions, $score);
+         mysqli_stmt_bind_param($stmt, 'iiii', $userId, $testId, $testNum, $qcount);
          mysqli_stmt_execute($stmt);
+
+         $stmt2 = mysqli_stmt_init($conn);
+         $sql2 = "UPDATE users SET users.score = ? WHERE users.user_id = ?";
+         mysqli_stmt_prepare($stmt2, $sql2);
+         mysqli_stmt_bind_param($stmt2, 'ii', $rating, $userId);
+         mysqli_stmt_execute($stmt2);
+
+
+
+
+
          return mysqli_stmt_get_result($stmt);
      }
 

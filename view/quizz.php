@@ -25,7 +25,9 @@ if($_SESSION["logged-in"] === "yes"){
     echo  "<label> Question {$currentQuestion} of {$numberOfQuestions}</label>";
     echo "<br>";
 
-    echo "SCORE: {$_SESSION["score"]}";
+
+    $score = round($_SESSION["score"]);
+    echo "Rating: {$score}";
 
 
         if($currentQuestion == $numberOfQuestions){

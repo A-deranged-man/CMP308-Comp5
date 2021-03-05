@@ -141,7 +141,6 @@ if($_SESSION["logged-in"] === "yes") {
             </form>";
 
 
-                                echo $_SESSION["fuck"];
 
     }
 }
