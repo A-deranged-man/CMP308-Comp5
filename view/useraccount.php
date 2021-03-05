@@ -23,9 +23,11 @@ if($_SESSION["logged-in"] === "yes") {
     }
 
     for ($i = 0, $iMax = count($user); $i < $iMax; $i++) {
-            echo "</br>";
+           // echo "</br>";
                 
-            echo "<div class=\"container emp-profile\">
+            echo "
+
+        <div class=\"container emp-profile\">
             <form method=\"post\">
                 <div class=\"row\">
                     <div class=\"col-md-6\">
@@ -41,7 +43,6 @@ if($_SESSION["logged-in"] === "yes") {
                                     </br>
                                     
                             <ul class=\"nav nav-tabs\" id=\"myTab\" role=\"tablist\">
-                            
                                 <li class=\"nav-item\">
                                     <a class=\"nav-link active\" id=\"Account-tab\" data-toggle=\"tab\" onclick=\"makeaccountactive()\" role=\"tab\" aria-controls=\"Account\">Account</a>
                                 </li>
@@ -137,8 +138,10 @@ if($_SESSION["logged-in"] === "yes") {
                         </div>
                     </div>
                 </div>
-            </form>           
-            </div>";    
+            </form>";
+
+
+                                echo $_SESSION["fuck"];
 
     }
 }

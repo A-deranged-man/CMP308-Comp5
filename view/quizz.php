@@ -1,21 +1,19 @@
 <?php
 include("header.php");
 include("../model/api.php");
+include("../controller/Glicko2Player.php");
 
 $qno = $_GET["q"];
 $id = $_GET["id"];
-
-if(!isset($_SESSION["score"])){
-    $_SESSION["score"] = 0;
-}
 
 if($_SESSION["logged-in"] === "yes"){
 
     $questionstxt = getQuestionsByTestId($id);
     $questions = json_decode($questionstxt);
     $numberOfQuestions = count($questions);
-   
-    echo $questionNumber;
+
+
+    //echo $questionNumber;
     //Descrypt number of question and show it 
     $hashkey = 178450932;
     $i = ($qno/ $hashkey) - 1;
@@ -27,7 +25,7 @@ if($_SESSION["logged-in"] === "yes"){
     echo  "<label> Question {$currentQuestion} of {$numberOfQuestions}</label>";
     echo "<br>";
 
-    echo "SCORE (DEBUG): {$_SESSION["score"]}";
+    echo "SCORE: {$_SESSION["score"]}";
 
 
         if($currentQuestion == $numberOfQuestions){

@@ -11,11 +11,12 @@ if(isset($_POST["Submit1"])){
 
 
 $hashkey = 178450932;
-$score = $_SESSION["score"];
+
 $id = $_GET["id"];
 $question_number = ($_GET['q'] / $hashkey);
 
-
+$user = new Glicko2Player($_SESSION["score"],350);
+$question_player = new Glicko2Player();
 
 
 
@@ -27,7 +28,13 @@ if($question[0]-> correct_ans == $selected_radio){
  //Increment question number
  //Hash question number and send to quizz page
 // -> Redirect to quizz 
-$_SESSION["score"] = $score + 1;
+//$_SESSION["score"] = $score + 1
+
+$user->AddWin($question);
+$question_player->AddLoss($user);
+$user->Update();
+$question_player->Update();
+$_SESSION["fuck"] = $user;
 $q = ($question_number + 1) * $hashkey;
 echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quizz.php?id={$id}&q={$q}';</script>";
 
