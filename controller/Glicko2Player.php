@@ -14,7 +14,9 @@ Written by Noah Smith 2011, June 7
 megiddo ( @t ) thirdform ( dot ) com
 Based on http://www.glicko.net/glicko/glicko2.doc/example.html
 Usage
+ *
 Glicko2Player([$rating = 1500 [, $rd = 350 [, $volatility = 0.06 [, $mu [, $phi [, $sigma [, $systemconstant = 0.75 ]]]]]]]
+ *
 For new players, use the default values for rating, rd, and volatility.
 The systemconstant should be between 0.3 and 1.2, depending on system itself (this is game dependent, and must be set
 by estimation or experimentation)
@@ -25,12 +27,15 @@ $Alice = new Glicko2Player();
 $Bob = new Glicko2Player();
 $Charlie = new Glicko2Player();
 $David = new Glicko2Player();
+ *
 $Alice->AddWin($Bob);
 $Alice->AddWin($Charlie)
 $Bob->AddLoss($Alice);
 $Bob->AddWin($Charlie);
+ *
 $Charlie->AddLoss($Alice);
 $Charlie->AddLoss($Bob);
+ *
 $Alice->Update();
 $Bob->Update();
 $Charlie->Update();
@@ -40,7 +45,10 @@ Caveat Emptor
 I make no assertions that either Glicko-2 or this code are correct.  Use at your own risk.
  *******************************************************************************/
 
+
 class Glicko2Player {
+
+
     public $rating;
     public $rd;
     public $sigma;
@@ -49,9 +57,13 @@ class Glicko2Player {
     public $phi;
     public $tau;
 
+
+
     private $pi2 = 9.8696044;
 
     var $M = array();
+
+
 
     function __construct($rating = 1500, $rd = 350, $volatility = 0.06, $mu = null, $phi = null, $sigma = null, $systemconstant = 0.75) {
         // Step 1

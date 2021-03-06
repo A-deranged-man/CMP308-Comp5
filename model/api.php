@@ -73,7 +73,7 @@
             $rows[] = $r;
         }
         return json_encode($rows);
-    };
+    }
 
         function getUserById($id){    
         global $conn;
@@ -88,12 +88,12 @@
             $rows[] = $r;
         }
         return json_encode($rows);
-    };
+    }
 
     function getQuestionsByTestId($id){
         global $conn;
         $stmt = mysqli_stmt_init($conn);
-        $sql = "SELECT tests.test_name , tests.test_subject, questions.qno , questions.question , questions.ans1 , questions.ans2, questions.ans3,questions.ans4,questions.correct_ans
+        $sql = "SELECT tests.test_name , tests.test_subject, questions.qno , questions.score, questions.question , questions.ans1 , questions.ans2, questions.ans3,questions.ans4,questions.correct_ans
          FROM `test_questions` 
          INNER JOIN tests 
          ON test_questions.test_id = tests.test_id 
@@ -151,27 +151,40 @@
         return json_encode($rows);
      }
 
-     function updateScore($userId , $testId , $testNum, $qcount, $rating){
+     function updateScore($UserID , $TestID , $NumberOfQuestions, $CorrectCounter){
          //INSERT INTO `sqlcmp311g20c05`.`user_scores` (`us_id`, `user_id`, `test_id`, `num_of_questions`, `score`) VALUES (NULL, '', '', '', '')
          global $conn;
          $stmt = mysqli_stmt_init($conn);
          $sql = "INSERT INTO `user_scores` (`user_id`, `test_id`, `num_of_questions`, `score`) VALUES (?, ?, ?, ?)";
          mysqli_stmt_prepare($stmt, $sql);
-         mysqli_stmt_bind_param($stmt, 'iiii', $userId, $testId, $testNum, $qcount);
+         mysqli_stmt_bind_param($stmt, 'iiii', $UserID, $TestID, $NumberOfQuestions, $CorrectCounter);
          mysqli_stmt_execute($stmt);
-
-         $stmt2 = mysqli_stmt_init($conn);
-         $sql2 = "UPDATE users SET users.score = ? WHERE users.user_id = ?";
-         mysqli_stmt_prepare($stmt2, $sql2);
-         mysqli_stmt_bind_param($stmt2, 'ii', $rating, $userId);
-         mysqli_stmt_execute($stmt2);
-
-
-
-
 
          return mysqli_stmt_get_result($stmt);
      }
+
+
+     function glickoUpdate($UserID, $UserRating, $QID, $QRating){
+
+         global $conn;
+
+         $stmt = mysqli_stmt_init($conn);
+         $sql = "UPDATE users SET users.score = ? WHERE users.user_id = ?";
+         mysqli_stmt_prepare($stmt, $sql);
+         mysqli_stmt_bind_param($stmt, 'ii', $UserRating, $UserID);
+         mysqli_stmt_execute($stmt);
+
+         $stmt2 = mysqli_stmt_init($conn);
+         $sql2 = "UPDATE questions SET questions.score = ? WHERE questions.qno = ?";
+         mysqli_stmt_prepare($stmt2, $sql2);
+         mysqli_stmt_bind_param($stmt2, 'ii', $QRating, $QID);
+         mysqli_stmt_execute($stmt2);
+
+
+     }
+
+
+
 
      function isTestTaken($userId , $testId){
         global $conn;

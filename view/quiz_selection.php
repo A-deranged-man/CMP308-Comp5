@@ -3,8 +3,7 @@ include("header.php");
 include("../model/api.php");
 if($_SESSION["logged-in"] === "yes"){
     $testtxt = getTests();
-    $hashkey = 178450932;
-    $q = $hashkey;
+    $QuestionCounter=0;
     $test = json_decode($testtxt);
     for ($i = 0, $iMax = count($test); $i < $iMax; $i++) {
         echo "
@@ -17,7 +16,7 @@ if($_SESSION["logged-in"] === "yes"){
                     if(isTestTaken($_SESSION["userid"],$test[$i]-> test_id)){
                         echo "<label>Complete</label>";
                     }else{
-                        echo "<a class='btn btn-primary' href='quizz.php?id={$test[$i]-> test_id}&q={$q}'>Start Test</a>";
+                        echo "<a class='btn btn-primary' href='quiz.php?TestID={$test[$i]-> test_id}&QuestionCounter={$QuestionCounter}'>Start Test</a>";
                     }
                     
             echo"</div>

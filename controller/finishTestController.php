@@ -1,15 +1,14 @@
 <?php 
 session_start();
 include("../model/api.php");
-$userId = $_SESSION["userid"];
-$testId = $_GET["id"];
-$qcount = $_SESSION["qcount"];
-$testNum= $_GET["qnum"];
-$rating = $_SESSION["score"];
+$UserID = $_SESSION["userid"];
+$TestID = $_GET["TestID"];
+$NumberOfQuestions= $_GET["NumberOfQuestions"];
+$CorrectCounter = $_SESSION["CorrectCounter"];
 
-$res = updateScore($userId , $testId , $testNum, $qcount, $rating);
+updateScore($UserID , $TestID , $NumberOfQuestions, $CorrectCounter);
 
-
+unset($_SESSION["CorrectCounter"]);
 
 //https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/useraccount.php
 echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/useraccount.php';</script>";

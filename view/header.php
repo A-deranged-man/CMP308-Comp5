@@ -119,7 +119,7 @@ else{
             <i class="fa fa-caret-down"></i>
         </a>
         <div id="quiz" class="st-bar-block st-hide st-padding-large st-medium">
-            <a href="quizzes.php" class="st-bar-item st-button">Show all quizzes</a>
+            <a href="quiz_selection.php" class="st-bar-item st-button">Show all quizzes</a>
         </div>
     <br>
 </nav>

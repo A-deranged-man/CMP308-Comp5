@@ -4,27 +4,21 @@ include("Glicko2Player.php");
 session_start();
 $selected_radio="";
 
-$_SESSION["qcount"] = 0;
 
 if(isset($_POST["Submit1"])){
     $selected_radio = $_POST["ans"];
     echo $selected_radio;
 }
 
+$TestID = $_GET["TestID"];
+$QuestionCounter = $_GET['QuestionCounter'];
+$QuestionCounter++;
 
-$hashkey = 178450932;
-
-
-++$_SESSION["qcount"];
-
-$id = $_GET["id"];
-$question_number = ($_GET['q'] / $hashkey);
-
-$user = new Glicko2Player($_SESSION["score"],350);
-$question_player = new Glicko2Player();
+$user = new Glicko2Player($_SESSION["UserRating"],350);
+$question_player = new Glicko2Player($_SESSION["QRating"],350);
 
 
-$questiontxt = getRightAnswerByID($question_number);
+$questiontxt = getRightAnswerByID($QuestionCounter);
 $question = json_decode($questiontxt);
 
 if($question[0]-> correct_ans == $selected_radio){
@@ -38,14 +32,18 @@ $question_player->AddLoss($user);
 $user->Update();
 $question_player->Update();
 
+$_SESSION["UserRating"] = $user->rating;
+$_SESSION["UserRating"] = round($_SESSION["UserRating"]);
+
+$_SESSION["QRating"] = $question_player->rating;
+$_SESSION["QRating"] = round($_SESSION["QRating"]);
+
+$_SESSION["CorrectCounter"]++;
+
+glickoUpdate($_SESSION["userid"],$_SESSION["UserRating"],$_SESSION["QID"],$_SESSION["QRating"]);
 
 
-
-$_SESSION["score"] = $user->rating;
-$_SESSION["score"] = round($_SESSION["score"]);
-
-$q = ($question_number + 1) * $hashkey;
-echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quizz.php?id={$id}&q={$q}';</script>";
+echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quiz.php?TestID={$TestID}&QuestionCounter={$QuestionCounter}';</script>";
 
 }else{
     //Decrement score session var
@@ -53,19 +51,21 @@ echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.
     //Hash question number and send to quizz page
     // -> Redirect to quizz
 
-    $user->AddLoss($question_player);
     $question_player->AddWin($user);
+    $user->AddLoss($question_player);
     $user->Update();
     $question_player->Update();
 
-    if($_SESSION["qcount"] == 0){
-        $_SESSION["qcount"] = 0;
-    }else{
-        $_SESSION["qcount"] = $score - 1;
-    }
+    $_SESSION["UserRating"] = $user->rating;
+    $_SESSION["UserRating"] = round($_SESSION["UserRating"]);
 
-    $q = ($question_number + 1) * $hashkey;
-    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quizz.php?id={$id}&q={$q}';</script>";
+    $_SESSION["QRating"] = $question_player->rating;
+    $_SESSION["QRating"] = round($_SESSION["QRating"]);
+
+
+    glickoUpdate($_SESSION["userid"],$_SESSION["UserRating"],$_SESSION["QID"],$_SESSION["QRating"]);
+
+    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quiz.php?TestID={$TestID}&QuestionCounter={$QuestionCounter}';</script>";
 
 }
 
