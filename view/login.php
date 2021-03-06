@@ -1,7 +1,6 @@
 <?php
 include("header.php");
 include("../model/api.php");
-session_start();
 
 //Delete and replace 
 if($_SESSION["logged-in"] === "yes"){
@@ -21,6 +20,7 @@ else{
             $_SESSION["fname"] = $row['fname'];
             $_SESSION["lname"] = $row['lname'];
             $_SESSION["UserRating"] = $row['score'];
+            $_SESSION["UserRD"] = $row['rd'];
             $_SESSION["logged-in"] = "yes";
             //Delete and replace
             echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quiz_selection.php';</script>"; exit;

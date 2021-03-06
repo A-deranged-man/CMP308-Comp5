@@ -45,22 +45,6 @@
         return mysqli_stmt_get_result($stmt);
     }
 
-
-    function getQuestions(){
-        global $conn;
-        $stmt = mysqli_stmt_init($conn);
-        $sql = "SELECT questions.qno, questions.question, questions.ans1, questions.ans2 , questions.ans3 , questions.ans4
-        FROM questions" ;
-        mysqli_stmt_prepare($stmt, $sql);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $rows = array();
-        while($r = mysqli_fetch_assoc($result)) {
-            $rows[] = $r;
-        }
-        return json_encode($rows);
-    }
-
     function getTests(){
         global $conn;
         $stmt = mysqli_stmt_init($conn);
@@ -93,7 +77,7 @@
     function getQuestionsByTestId($id){
         global $conn;
         $stmt = mysqli_stmt_init($conn);
-        $sql = "SELECT tests.test_name , tests.test_subject, questions.qno , questions.score, questions.question , questions.ans1 , questions.ans2, questions.ans3,questions.ans4,questions.correct_ans
+        $sql = "SELECT tests.test_name , tests.test_subject, questions.qno , questions.score, questions.rd, questions.question , questions.ans1 , questions.ans2, questions.ans3,questions.ans4,questions.correct_ans
          FROM `test_questions` 
          INNER JOIN tests 
          ON test_questions.test_id = tests.test_id 
@@ -152,7 +136,6 @@
      }
 
      function updateScore($UserID , $TestID , $NumberOfQuestions, $CorrectCounter){
-         //INSERT INTO `sqlcmp311g20c05`.`user_scores` (`us_id`, `user_id`, `test_id`, `num_of_questions`, `score`) VALUES (NULL, '', '', '', '')
          global $conn;
          $stmt = mysqli_stmt_init($conn);
          $sql = "INSERT INTO `user_scores` (`user_id`, `test_id`, `num_of_questions`, `score`) VALUES (?, ?, ?, ?)";
@@ -164,27 +147,24 @@
      }
 
 
-     function glickoUpdate($UserID, $UserRating, $QID, $QRating){
+     function glickoUpdate($UserID, $UserRating, $UserRD ,$QID, $QRating, $QRD){
 
          global $conn;
 
          $stmt = mysqli_stmt_init($conn);
-         $sql = "UPDATE users SET users.score = ? WHERE users.user_id = ?";
+         $sql = "UPDATE users SET users.score = ?, users.rd = ? WHERE users.user_id = ?";
          mysqli_stmt_prepare($stmt, $sql);
-         mysqli_stmt_bind_param($stmt, 'ii', $UserRating, $UserID);
+         mysqli_stmt_bind_param($stmt, 'iii', $UserRating, $UserRD, $UserID);
          mysqli_stmt_execute($stmt);
 
          $stmt2 = mysqli_stmt_init($conn);
-         $sql2 = "UPDATE questions SET questions.score = ? WHERE questions.qno = ?";
+         $sql2 = "UPDATE questions SET questions.score = ?, questions.rd = ? WHERE questions.qno = ?";
          mysqli_stmt_prepare($stmt2, $sql2);
-         mysqli_stmt_bind_param($stmt2, 'ii', $QRating, $QID);
+         mysqli_stmt_bind_param($stmt2, 'iii', $QRating, $QRD , $QID);
          mysqli_stmt_execute($stmt2);
 
 
      }
-
-
-
 
      function isTestTaken($userId , $testId){
         global $conn;
@@ -201,118 +181,3 @@
             return 0;
         }
      }
-
-    /*function  delete_question($qno){
-        session_start();
-        if($_SESSION["logged-in"] === "yes"){
-            global $conn;
-            $stmt = mysqli_stmt_init($conn);
-            $sql = "DELETE FROM answer WHERE answer.qno = ?" ;
-            mysqli_stmt_prepare($stmt, $sql);
-            mysqli_stmt_bind_param($stmt, 'i', $qno);
-            mysqli_stmt_execute($stmt);
-
-            $stmt = mysqli_stmt_init($conn);
-            $sql = "DELETE FROM question WHERE question.qno = ?" ;
-            mysqli_stmt_prepare($stmt, $sql);
-            mysqli_stmt_bind_param($stmt, 'i', $qno);
-            mysqli_stmt_execute($stmt);
-        }
-
-    }
-
-    function edit_question($question, $qno){
-        global $conn;
-        $stmt = mysqli_stmt_init($conn);
-        $sql = "UPDATE question SET question.question = ? WHERE question.qno = ?" ;
-        mysqli_stmt_prepare($stmt, $sql);
-        mysqli_stmt_bind_param($stmt, 'si', $question, $qno);
-        mysqli_stmt_execute($stmt);
-        return mysqli_stmt_get_result($stmt);
-    }
-
-    function getQuestionById($qno, $userid){
-        global $conn;
-        $stmt = mysqli_stmt_init($conn);
-        $sql = "SELECT question.qno, question.question, question.userid, question.ddtm, user.username 
-        FROM question, user WHERE question.qno = ? AND user.userid = ?" ;
-        mysqli_stmt_prepare($stmt, $sql);
-        mysqli_stmt_bind_param($stmt, 'ii', $qno, $userid);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $rows = array();
-        while($r = mysqli_fetch_assoc($result)) {
-            $rows[] = $r;
-        }
-        return json_encode($rows);
-    }
-
-    function getQuestions(){
-        global $conn;
-        $stmt = mysqli_stmt_init($conn);
-        $sql = "SELECT question.qno, question.question, question.userid, question.ddtm, user.username 
-        FROM question, user WHERE question.userid = user.userid ORDER BY question.ddtm DESC LIMIT 6 " ;
-        mysqli_stmt_prepare($stmt, $sql);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $rows = array();
-        while($r = mysqli_fetch_assoc($result)) {
-            $rows[] = $r;
-        }
-        return json_encode($rows);
-    }
-
-    function getAnswers($qno){
-        global $conn;
-        $stmt = mysqli_stmt_init($conn);
-        $sql = "SELECT answer.qno, answer.answer, answer.userid, answer.ddtm, user.username 
-        FROM user, answer WHERE answer.qno = ? AND answer.userid = user.userid ORDER BY answer.ddtm" ;
-        mysqli_stmt_prepare($stmt, $sql);
-        mysqli_stmt_bind_param($stmt, 'i', $qno);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $rows = array();
-        while($r = mysqli_fetch_assoc($result)) {
-            $rows[] = $r;
-        }
-        return json_encode($rows);
-    }
-
-    function getQuestionForAnswer($qno){
-        global $conn;
-        $stmt = mysqli_stmt_init($conn);
-        $sql = "SELECT question.qno, question.question, question.userid, question.ddtm, user.username 
-        FROM question, user WHERE question.qno = ? AND user.userid = question.userid" ;
-        mysqli_stmt_prepare($stmt, $sql);
-        mysqli_stmt_bind_param($stmt, 'i', $qno);
-        mysqli_stmt_execute($stmt);
-        $result = mysqli_stmt_get_result($stmt);
-        $rows = array();
-        while($r = mysqli_fetch_assoc($result)) {
-            $rows[] = $r;
-        }
-        return json_encode($rows);
-    }
-
-    function submitQuestion($question, $userid, $ddtm){
-        global $conn;
-        $stmt = mysqli_stmt_init($conn);
-        $sql = "INSERT into question (question, userid, ddtm) VALUES (?,?,?)" ;
-        mysqli_stmt_prepare($stmt, $sql);
-        mysqli_stmt_bind_param($stmt, 'sis', $question, $userid, $ddtm);
-        mysqli_stmt_execute($stmt);
-        return mysqli_stmt_get_result($stmt);
-    }
-
-    function submitAnswer($qno, $answer, $userid, $ddtm){
-        global $conn;
-        $stmt = mysqli_stmt_init($conn);
-        $sql = "INSERT into `answer` (qno,answer,userid, ddtm)
-                     VALUES (?,?,?,?)" ;
-        mysqli_stmt_prepare($stmt, $sql);
-        mysqli_stmt_bind_param($stmt, 'isis', $qno, $answer, $userid,$ddtm);
-        mysqli_stmt_execute($stmt);
-        return mysqli_stmt_get_result($stmt);
-    } 
-
-   

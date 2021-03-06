@@ -9,7 +9,7 @@
 
         <div class="st-col s4">
             <h4>About</h4>
-            <p><a class="st-text-black" href="view/about.php">About COVID COCKROACHES</a></p>
+            <p><a class="st-text-black" href="about.php">About COVID COCKROACHES</a></p>
             <p><a class="st-text-black" href="privacy_policy.php">Privacy Policy</a></p>
         </div>
 

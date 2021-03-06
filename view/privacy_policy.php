@@ -6,8 +6,8 @@ include("header.php");
 
         <p id="policy_notice">The policy:<br />
             This privacy policy notice is served by
-            'DB Software' under the website;
-            <a href="https://mayar.abertay.ac.uk/~1901368/cmp306/">https://mayar.abertay.ac.uk/~1901368/cmp306/</a>.
+            'COVID Cockroaches' under the website;
+            <a href="https://mayar.abertay.ac.uk/~1901368/cmp306/">https://mayar.abertay.ac.uk/~cmp311g20c05/</a>.
             The purpose of this policy is to explain to you how we control, process,
             handle and protect your personal
             information through the business and while you browse or use this website.
