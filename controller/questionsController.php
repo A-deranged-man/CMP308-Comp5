@@ -12,6 +12,9 @@ if(isset($_POST["Submit1"])){
 $TestID = $_GET["TestID"];
 $QuestionCounter = $_GET['QuestionCounter'];
 $QuestionCounter++;
+test_logUpdate($_SESSION["userid"],$TestID,$QuestionCounter);
+
+
 
 //Create two new Glicko2Players, one for the logged-in user, the other for the current question.
 $user = new Glicko2Player($_SESSION["UserRating"],$_SESSION["UserRD"]);
@@ -50,7 +53,7 @@ if($question[0]-> correct_ans == $selected_answer){
     glickoUpdate($_SESSION["userid"],$_SESSION["UserRating"],$_SESSION["UserRD"],$_SESSION["QID"],$_SESSION["QRating"],$_SESSION["QRD"]);
     
     //Return to the quiz, starting from the next question.
-    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quiz.php?TestID={$TestID}&QuestionCounter={$QuestionCounter}';</script>";
+    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quiz.php?TestID={$TestID}&QuestionCounter={$QuestionCounter}&NewStart=0';</script>";
 
 }
 //If the answer was incorrect, do the following.
@@ -78,6 +81,6 @@ else{
     glickoUpdate($_SESSION["userid"],$_SESSION["UserRating"],$_SESSION["UserRD"],$_SESSION["QID"],$_SESSION["QRating"],$_SESSION["QRD"]);
 
     //Return to the quiz, starting from the next question.
-    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quiz.php?TestID={$TestID}&QuestionCounter={$QuestionCounter}';</script>";
+    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quiz.php?TestID={$TestID}&QuestionCounter={$QuestionCounter}&NewStart=0';</script>";
 
 }

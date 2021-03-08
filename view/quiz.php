@@ -6,6 +6,12 @@ include("../controller/Glicko2Player.php");
 //These values are retrieved from the various controllers and are used to track the current test and question number.
 $QuestionCounter = $_GET["QuestionCounter"];
 $TestID = $_GET["TestID"];
+$NewStart = $_GET["NewStart"];
+
+if($NewStart = 1) {
+    test_logCreate($_SESSION["userid"],$TestID,$QuestionCounter);
+}
+
 
 if($_SESSION["logged-in"] === "yes"){
 

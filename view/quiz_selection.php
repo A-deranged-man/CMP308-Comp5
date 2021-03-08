@@ -16,7 +16,11 @@ if($_SESSION["logged-in"] === "yes"){
                     if(isTestTaken($_SESSION["userid"],$test[$i]-> test_id)){
                         echo "<label>Complete</label>";
                     }else{
-                        echo "<a class='st-border-black st-black st-text-white btn btn-primary' href='quiz.php?TestID={$test[$i]-> test_id}&QuestionCounter={$QuestionCounter}'>Start Test</a>";
+                        if($current_question = test_logCheck($_SESSION["userid"], $test[$i]->test_id)){
+                            echo "<a class='st-border-black st-black st-text-white btn btn-primary' href='quiz.php?TestID={$test[$i]-> test_id}&QuestionCounter={$current_question[0]["current_question"]}&NewStart=0'>Resume Test</a>";
+                        }else{
+                            echo "<a class='st-border-black st-black st-text-white btn btn-primary' onclick='' href='quiz.php?TestID={$test[$i]-> test_id}&QuestionCounter={$QuestionCounter}&NewStart=1'>Start Test</a>";
+                        }
                     }
                     
             echo"</div>

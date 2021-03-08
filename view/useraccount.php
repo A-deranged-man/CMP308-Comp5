@@ -64,7 +64,7 @@ if($_SESSION["logged-in"] === "yes") {
                             <div class=\"tab-pane fade show active\" id=\"Account\" role=\"tabpanel\" aria-labelledby=\"Account-tab\">
                                         <div class=\"row\">
                                             <div class=\"col-md-6\">
-                                                <label>User Id</label>
+                                                <label>User ID</label>
                                             </div>
                                             <div class=\"col-md-6\">
                                                 <p>{$user[0] -> user_id}</p>

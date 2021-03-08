@@ -181,6 +181,39 @@
 
      }
 
+    function test_logCheck($UserID, $TestID){
+        global $conn;
+        $stmt = mysqli_stmt_init($conn);
+        $sql = "SELECT test_log.current_question FROM `test_log` WHERE user_id = ? AND test_id = ?";
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_bind_param($stmt, 'ii', $UserID , $TestID);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $rows = array();
+        while($r = mysqli_fetch_assoc($result)) {
+            $rows[] = $r;
+        }
+        return $rows;
+    }
+
+     function test_logCreate($UserID, $TestID, $QNO){
+        global $conn;
+        $stmt = mysqli_stmt_init($conn);
+        $sql = "INSERT INTO test_log (user_id, test_id, current_question) VALUES (?, ?, ?);";
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_bind_param($stmt, 'iii', $UserID, $TestID, $QNO);
+        mysqli_stmt_execute($stmt);
+    }
+
+     function test_logUpdate($UserID, $TestID, $QNO){
+        global $conn;
+        $stmt = mysqli_stmt_init($conn);
+        $sql = "UPDATE test_log SET test_log.current_question = ? WHERE test_log.user_id = ? AND test_log.test_id = ?";
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_bind_param($stmt, 'iii',$QNO, $UserID, $TestID);
+        mysqli_stmt_execute($stmt);
+    }
+
      function isTestTaken($userId , $testId){
         global $conn;
         $stmt = mysqli_stmt_init($conn);
