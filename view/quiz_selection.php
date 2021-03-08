@@ -16,7 +16,7 @@ if($_SESSION["logged-in"] === "yes"){
                     if(isTestTaken($_SESSION["userid"],$test[$i]-> test_id)){
                         echo "<label>Complete</label>";
                     }else{
-                        echo "<a class='btn btn-primary' href='quiz.php?TestID={$test[$i]-> test_id}&QuestionCounter={$QuestionCounter}'>Start Test</a>";
+                        echo "<a class='st-border-black st-black st-text-white btn btn-primary' href='quiz.php?TestID={$test[$i]-> test_id}&QuestionCounter={$QuestionCounter}'>Start Test</a>";
                     }
                     
             echo"</div>

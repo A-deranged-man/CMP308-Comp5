@@ -140,8 +140,25 @@ if($_SESSION["logged-in"] === "yes") {
                 </div>
             </form>";
 
+        //Get user status depending on int, then show the hardest questions.
+        if ($user[0]-> user_type != 0){
+            $userQuestionstxt= getQuestionsUserAccount();
+            $userQuestions=json_decode($userQuestionstxt);
 
-
+            echo"<br><h5>Hardest Questions:</h5><br>";
+            for ($j = 0, $jMax = count($userQuestions); $j < $jMax; $j++) {
+                echo "
+                <div class=\"container\">
+                    <div class=\"list-group-item list-group-item-action bg-light text-dark \">
+                        <div class=\"d-flex w-100 justify-content-between\">
+                            <p class=\"mb-1\"><b>{$userQuestions[$j]-> question} </b></p>
+                                <p><b>Rating: {$userQuestions[$j]->  score}</b></p>
+                        </div>
+                    </div>
+                </div>
+                <br>";
+            }
+        }
     }
 }
 

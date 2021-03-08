@@ -96,6 +96,21 @@
 
     }
 
+    function getQuestionsUserAccount(){
+        global $conn;
+        $stmt = mysqli_stmt_init($conn);
+        $sql = "SELECT * FROM `questions` ORDER BY `questions`.`score` DESC LIMIT 5";
+        mysqli_stmt_prepare($stmt, $sql);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        $rows = array();
+        while($r = mysqli_fetch_assoc($result)) {
+            $rows[] = $r;
+        }
+        return json_encode($rows);
+
+    }
+
     //SELECT tests.test_name , user_scores.score , user_scores.num_of_questions FROM `user_scores` INNER JOIN users ON user_scores.user_id = users.user_id INNER JOIN tests on user_scores.test_id = tests.test_id WHERE user_scores.user_id = 2
 
      function getResultsForUser($userid){
