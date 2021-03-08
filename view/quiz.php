@@ -77,9 +77,9 @@ if($_SESSION["logged-in"] === "yes"){
                 <br>";
 
                 if($QuestionCounterFrontEnd == $NumberOfQuestions){
-                    echo "<input class='btn btn-primary' type='Submit' name='Submit1' value='Finish Test'></input>";
+                    echo "<input class='st-border-black st-black st-text-white btn btn-primary' type='Submit' name='Submit1' value='Finish Test'></input>";
                 }else{
-                    echo "<input class='btn btn-primary' type='Submit' name='Submit1' value='Next Question'></input>";
+                    echo "<input class='st-border-black st-black st-text-white btn btn-primary' type='Submit' name='Submit1' value='Next Question'></input>";
                 }
                 echo "</form>";
 }
