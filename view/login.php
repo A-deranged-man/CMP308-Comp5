@@ -1,9 +1,10 @@
 <?php
 include("header.php");
 include("../model/api.php");
-session_start();
+
+//Delete and replace 
 if($_SESSION["logged-in"] === "yes"){
-    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~1901368/cmp306/view/questions.php';</script>"; exit;
+    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quiz_selection.php';</script>"; exit;
 }
 
 else{
@@ -14,10 +15,15 @@ else{
     $result = login_user($email);
     $row = $result->fetch_assoc();
         if (password_verify($password,$row['password'])){
-            $_SESSION["userid"] = $row['userid'];
-            $_SESSION["username"] = $row['username'];
+            $_SESSION["userid"] = $row['user_id'];
+            $_SESSION["email"] = $row['email'];
+            $_SESSION["fname"] = $row['fname'];
+            $_SESSION["lname"] = $row['lname'];
+            $_SESSION["UserRating"] = $row['score'];
+            $_SESSION["UserRD"] = $row['rd'];
             $_SESSION["logged-in"] = "yes";
-            echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~1901368/cmp306/view/questions.php';</script>"; exit;
+            //Delete and replace
+            echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quiz_selection.php';</script>"; exit;
         }
 
         else{

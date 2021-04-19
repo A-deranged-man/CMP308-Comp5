@@ -1,36 +1,207 @@
 <?php
 include("header.php");
 include("../model/api.php");
-session_start();
 $userid = $_SESSION['userid'];
 if($_SESSION["logged-in"] === "yes") {
 
     $usertxt = getUserById($userid);
     $user = json_decode($usertxt);
+
+    $resulttxt = getResultsForUser($user[0]-> user_id);
+    $result = json_decode($resulttxt);
+
+    //Get user status depending on int (0 -> User / 1 -> Teacher / 2 -> Admin)
+    $usertype = "";
+    if ($user[0]-> user_type == 0) {
+        $usertype = "User";
+    }else if ($user[0]-> user_type == 1){
+        $usertype = "Teacher";
+    }else if ($user[0]-> user_type == 2){
+        $usertype = "Admin";
+    }else{
+        $usertype = "Could not load user type!";
+    }
+
     for ($i = 0, $iMax = count($user); $i < $iMax; $i++) {
-        echo "<div class=\"container\">
-            <div class=\"list-group-item list-group-item-action bg-light text-dark \">
-                <div class=\"d-flex w-100 justify-content-between\">
-                    <h5 class=\"mb-1\">Question: {$user[$i]-> question} </h5>
+           // echo "</br>";
+                
+            echo "
+
+        <div class=\"container emp-profile\">
+            <form method=\"post\">
+                <div class=\"row\">
+                    <div class=\"col-md-6\">
+                        <div class=\"profile-head\">
+                                    <h5>
+                                        {$user[0] -> fname} {$user[0] -> lname}
+                                    </h5>
+                                    <h6>
+                                        {$usertype}
+                                    </h6>
+                                    <p class=\"proile-rating\">Rating : <span>{$user[0]-> score}</span></p>
+
+                                    </br>
+                                    
+                            <ul class=\"nav nav-tabs\" id=\"myTab\" role=\"tablist\">
+                                <li class=\"nav-item\">
+                                    <a class=\"nav-link active\" id=\"Account-tab\" data-toggle=\"tab\" onclick=\"makeaccountactive()\" role=\"tab\" aria-controls=\"Account\">Account</a>
+                                </li>
+                                
+                                <li class=\"nav-item\">
+                                    <a class=\"nav-link\" id=\"Scores-tab\" data-toggle=\"tab\" onclick=\"makescoresactive()\" role=\"tab\" aria-controls=\"Scores\">Scores</a>
+                                </li>
+                                
+                            </ul>
+                            </br>
+                            
+                        </div>
+                    </div>
+
                 </div>
-                <p class=\"st-small\">Date Posted: {$user[$i]-> ddtm}
-                    <br>
-                    Posted By: {$user[$i]-> username}
-                </p>
-                <button class=\"btn btn-primary st-red st-text-white st-border-black\">
-                    <a class=\"text-light\" href=\"delete_question.php?qno={$user[$i]-> qno}\">Delete Question</a>
-                </button>
-                <button class=\"btn btn-primary st-black st-text-white st-border-black\">
-                    <a class=\"text-light\" href=\"edit_question.php?qno={$user[$i]-> qno}\">Edit Question</a>
-                </button>
-            </div>
-        </div>
-        <br>";
+                <div class=\"row\">
+                    <div class=\"col-md-8\">
+                        <div class=\"tab-content profile-tab\" id=\"myTabContent\">
+                            <div class=\"tab-pane fade show active\" id=\"Account\" role=\"tabpanel\" aria-labelledby=\"Account-tab\">
+                                        <div class=\"row\">
+                                            <div class=\"col-md-6\">
+                                                <label>User ID</label>
+                                            </div>
+                                            <div class=\"col-md-6\">
+                                                <p>{$user[0] -> user_id}</p>
+                                            </div>
+                                        </div>
+                                        <div class=\"row\">
+                                            <div class=\"col-md-6\">
+                                                <label>Full Name</label>
+                                            </div>
+                                            <div class=\"col-md-6\">
+                                                <p>{$user[0] -> fname} {$user[0] -> lname}</p>
+                                            </div>
+                                        </div>
+                                        <div class=\"row\">
+                                            <div class=\"col-md-6\">
+                                                <label>Email</label>
+                                            </div>
+                                            <div class=\"col-md-6\">
+                                                <p>{$user[0]-> email}</p>
+                                            </div>
+                                        </div>
+                                        <div class=\"row\">
+                                            <div class=\"col-md-6\">
+                                                <label>Account Type</label>
+                                            </div>
+                                            <div class=\"col-md-6\">
+                                                <p>{$usertype}</p>
+                                            </div>
+                                        </div>
+                                        <div class=\"row\">
+                                            <div class=\"col-md-6\">
+                                                <label>Rating</label>
+                                            </div>
+                                            <div class=\"col-md-6\">
+                                                <p>{$user[0]-> score}</p>
+                                            </div>
+                                        </div>
+                            </div>
+
+                            <div class=\"tab-pane fade\" id=\"Scores\" role=\"tabpanel\" aria-labelledby=\"Scores-tab\">";
+                                if(empty($result))
+                                {
+                                    echo"   <div class=\"row\">
+                                    <div class=\"col-md-6\">
+                                        <label>No Tests Taken</label>
+                                    </div>
+                                    <div class=\"col-md-6\">
+                                        <p></p>
+                                    </div>
+                                </div>";
+                                }
+                                else
+                                {
+                                    for ($j = 0, $jMax = count($result); $j < $jMax; $j++){
+
+                                        echo"   <div class=\"row\">
+                                               <div class=\"col-md-6\">
+                                                   <label>{$result[$j] -> test_name}</label>
+                                               </div>
+                                               <div class=\"col-md-6\">
+                                                   <p>{$result[$j]-> score} / {$result[$j]-> num_of_questions}</p>
+                                               </div>
+                                           </div>";
+   
+                                    }
+                                }
+
+
+                            echo "</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>";
+
+        //Get user status depending on int, then show the hardest questions.
+        if ($user[0]-> user_type != 0){
+            $userQuestionstxt= getQuestionsUserAccount();
+            $userQuestions=json_decode($userQuestionstxt);
+
+            echo"<br><h5>Hardest Questions:</h5><br>";
+            for ($j = 0, $jMax = count($userQuestions); $j < $jMax; $j++) {
+                echo "
+                <div class=\"container\">
+                    <div class=\"list-group-item list-group-item-action bg-light text-dark \">
+                        <div class=\"d-flex w-100 justify-content-between\">
+                            <p class=\"mb-1\"><b>{$userQuestions[$j]-> question} </b></p>
+                                <p><b>Rating: {$userQuestions[$j]->  score}</b></p>
+                        </div>
+                    </div>
+                </div>
+                <br>";
+            }
+        }
+        if ($user[0]-> user_type != 0){
+            $userStudentstxt= getStudentsUserAccount();
+            $userStudents=json_decode($userStudentstxt);
+
+            echo"<br><h5>Struggling Students:</h5><br>";
+            for ($j = 0, $jMax = count($userStudents); $j < $jMax; $j++) {
+                echo "
+                <div class=\"container\">
+                    <div class=\"list-group-item list-group-item-action bg-light text-dark \">
+                        <div class=\"d-flex w-100 justify-content-between\">
+                            <p class=\"mb-1\"><b>{$userStudents[$j]-> fname} {$userStudents[$j]-> lname}</b></p>
+                                <p><b>Rating: {$userStudents[$j]->  score}</b></p>
+                        </div>
+                    </div>
+                </div>
+                <br>";
+            }
+        }
     }
 }
 
 else{
-    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~1901368/cmp306/view/login.php';</script>"; exit;
+    header("Location: login.php"); exit;
 }
 
 include("footer.php");
+?>
+<script>
+		
+		
+		function makeaccountactive(){
+		document.getElementById("Scores").className = "tab-pane fade";
+		document.getElementById("Account").className = "tab-pane fade show active";
+		
+		document.getElementById("Account-tab").className = "nav-link active";
+		document.getElementById("Scores-tab").className = "nav-link";
+		}
+		function makescoresactive(){
+		document.getElementById("Scores").className = "tab-pane fade show active";
+		document.getElementById("Account").className = "tab-pane fade";
+		
+		document.getElementById("Account-tab").className = "nav-link";
+		document.getElementById("Scores-tab").className = "nav-link active";
+		}
+
+		</script>

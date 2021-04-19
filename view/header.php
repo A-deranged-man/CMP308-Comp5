@@ -1,11 +1,7 @@
 <!DOCTYPE html>
-<!--
-Site designed by Dylan Baker
-Libraries used from Bootstrap 4, W3.CSS, jQuery, Popper.js, Bootstrap JS, Google & Font Awesome.
--->
 <html lang="en">
     <head>
-        <title>DB Software</title>
+        <title>MCQ Application</title>
 
         <!-- Required meta tags -->
         <meta charset="UTF-8">
@@ -13,11 +9,11 @@ Libraries used from Bootstrap 4, W3.CSS, jQuery, Popper.js, Bootstrap JS, Google
 
         <!-- Personal Stylesheet & Icon -->
         <link href="favicon.png" rel="icon">
-        <link href="styles1.css" rel="stylesheet">
+        <link href="../styles/styles1.css" rel="stylesheet">
 
         <!-- Google Roboto, Google Montserrat & Font Awesome -->
-        <link href="Google-Roboto.css" rel="stylesheet">
-        <link href="Google-Montserrat.css" rel="stylesheet">
+        <link href="../fonts/Google-Roboto.css" rel="stylesheet">
+        <link href="../fonts/Google-Montserrat.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- Bootstrap CSS -->
@@ -89,8 +85,8 @@ else{
 
         <a class="st-bar-item st-white st-left-align" id="myBtn" >
             <?php
-            if(isset($_SESSION['username'])) {
-                echo "Welcome ".$_SESSION['username']."!";
+            if(isset($_SESSION['fname'])) {
+                echo "Welcome ".$_SESSION['fname']."!";
             }
 
             else{
@@ -106,7 +102,6 @@ else{
             <i class="fa fa-caret-down"></i>
         </a>
         <div id="user_account" class="st-bar-block st-hide st-padding-large st-medium">
-            <a href="questions.php" class="st-bar-item st-button">Q&A</a>
             <?php
             if($_SESSION["logged-in"] === "yes") {
                 echo"<a href=\"useraccount.php\" class=\"st-bar-item st-button\">User Account</a>";
@@ -124,7 +119,7 @@ else{
             <i class="fa fa-caret-down"></i>
         </a>
         <div id="quiz" class="st-bar-block st-hide st-padding-large st-medium">
-            <a href="#" class="st-bar-item st-button">#</a>
+            <a href="quiz_selection.php" class="st-bar-item st-button">Show all quizzes</a>
         </div>
     <br>
 </nav>
