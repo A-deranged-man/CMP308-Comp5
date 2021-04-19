@@ -53,7 +53,7 @@ if($question[0]-> correct_ans == $selected_answer){
     glickoUpdate($_SESSION["userid"],$_SESSION["UserRating"],$_SESSION["UserRD"],$_SESSION["QID"],$_SESSION["QRating"],$_SESSION["QRD"]);
     
     //Return to the quiz, starting from the next question.
-    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quiz.php?TestID={$TestID}&QuestionCounter={$QuestionCounter}&NewStart=0';</script>";
+    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/production/view/quiz.php?TestID={$TestID}&QuestionCounter={$QuestionCounter}&NewStart=0';</script>";
 
 }
 //If the answer was incorrect, do the following.
@@ -81,6 +81,6 @@ else{
     glickoUpdate($_SESSION["userid"],$_SESSION["UserRating"],$_SESSION["UserRD"],$_SESSION["QID"],$_SESSION["QRating"],$_SESSION["QRD"]);
 
     //Return to the quiz, starting from the next question.
-    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quiz.php?TestID={$TestID}&QuestionCounter={$QuestionCounter}&NewStart=0';</script>";
+    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/production/view/quiz.php?TestID={$TestID}&QuestionCounter={$QuestionCounter}&NewStart=0';</script>";
 
 }

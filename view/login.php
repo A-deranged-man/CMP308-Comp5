@@ -4,7 +4,7 @@ include("../model/api.php");
 
 //Delete and replace 
 if($_SESSION["logged-in"] === "yes"){
-    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quiz_selection.php';</script>"; exit;
+    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/production/view/quiz_selection.php';</script>"; exit;
 }
 
 else{
@@ -23,7 +23,7 @@ else{
             $_SESSION["UserRD"] = $row['rd'];
             $_SESSION["logged-in"] = "yes";
             //Delete and replace
-            echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/quiz_selection.php';</script>"; exit;
+            echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/production/view/quiz_selection.php';</script>"; exit;
         }
 
         else{

@@ -30,7 +30,7 @@ updateScore($UserID , $TestID , $NumberOfQuestions, $CorrectCounter);
 
 unset($_SESSION["CorrectCounter"]);
 
-echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/useraccount.php';</script>";
+echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/production/view/useraccount.php';</script>";
 
 
 

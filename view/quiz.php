@@ -84,6 +84,6 @@ if($_SESSION["logged-in"] === "yes"){
                 echo "</form>";
 }
 else{
-    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/staging/view/login.php';</script>"; exit;
+    echo "<script type='text/javascript'>window.top.location='https://mayar.abertay.ac.uk/~cmp311g20c05/production/view/login.php';</script>"; exit;
 }
 include("footer.php");
