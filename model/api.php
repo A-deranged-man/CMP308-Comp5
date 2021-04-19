@@ -111,7 +111,7 @@
     function getStudentsUserAccount(){
         global $conn;
         $stmt = mysqli_stmt_init($conn);
-        $sql = "SELECT * FROM `users` ORDER BY `users`.`score` ASC LIMIT 5";
+        $sql = "SELECT * FROM `users` WHERE `users`.`user_type` = 0 ORDER BY `users`.`score` ASC LIMIT 5";
         mysqli_stmt_prepare($stmt, $sql);
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
