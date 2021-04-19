@@ -159,6 +159,24 @@ if($_SESSION["logged-in"] === "yes") {
                 <br>";
             }
         }
+        if ($user[0]-> user_type != 0){
+            $userStudentstxt= getStudentsUserAccount();
+            $userStudents=json_decode($userStudentstxt);
+
+            echo"<br><h5>Struggling Students:</h5><br>";
+            for ($j = 0, $jMax = count($userStudents); $j < $jMax; $j++) {
+                echo "
+                <div class=\"container\">
+                    <div class=\"list-group-item list-group-item-action bg-light text-dark \">
+                        <div class=\"d-flex w-100 justify-content-between\">
+                            <p class=\"mb-1\"><b>{$userStudents[$j]-> fname} {$userStudents[$j]-> lname}</b></p>
+                                <p><b>Rating: {$userStudents[$j]->  score}</b></p>
+                        </div>
+                    </div>
+                </div>
+                <br>";
+            }
+        }
     }
 }
 
