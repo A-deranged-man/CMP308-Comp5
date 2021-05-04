@@ -14,14 +14,12 @@
             <label for="fname">First Name:</label>
             <br>
             <input type="text" name="fname" id="fname" placeholder="First Name">
-            <span id="confirmMessage" class="confirmMessage"></span>
         </div>
 
         <div class="fieldWrapper">
             <label for="lname">Last Name:</label>
             <br>
             <input type="text" name="lname" id="lname" placeholder="Last Name">
-            <span id="confirmMessage" class="confirmMessage"></span>
         </div>
 
 

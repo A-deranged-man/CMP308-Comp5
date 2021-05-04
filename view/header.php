@@ -57,7 +57,7 @@ if(!isset($_COOKIE[$cookie_accept])) {
                             <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>
                         </div>
                         <div class=\"modal-body\">
-                            <p>If you wish to continue browsing DB Software, you must accept the use of cookies on this site. 
+                            <p>If you wish to continue using the MCQ Application, you must accept the use of cookies on this site. 
                                By continuing to use the site or clicking \"Accept Cookies\" You accept this sites usage of cookies.</p>
                         </div>
                         <div class=\"modal-footer\">
