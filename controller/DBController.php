@@ -1,9 +1,9 @@
 <?php
 class DBController {
-    public $host = "lochnagar.abertay.ac.uk";
-    public $user = "sqlcmp311g20c05";
-    public $password = "G5R9qBwI3JBx";
-    public $database = "sqlcmp311g20c05";
+    public $host = "";
+    public $user = "";
+    public $password = "";
+    public $database = "";
     public $conn;
 
     public function getConnstring() {
